@@ -1,5 +1,6 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import axios from "axios";
+import { HomepageMovieListContext } from "../context/HomepageMovieListContext";
 
 export const HomepageContext = createContext();
 
@@ -12,7 +13,10 @@ export const HomepageContextProvider = (props) => {
     const popularURL = `http://localhost:8080/popular-movies`;
     axios
       .get(latestURL)
-      .then((res) => setLatestMovies(res.data.results))
+      .then((res) => {
+        setLatestMovies(res.data.results);
+      })
+
       .catch((err) => console.log(err));
 
     axios

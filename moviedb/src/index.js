@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { HomepageContextProvider } from "../src/context/HomepageContext";
+import { HomepageMovieListContextProvider } from "../src/context/HomepageMovieListContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <HomepageContextProvider>
-      <App />
+      <HomepageMovieListContextProvider>
+        <App />
+      </HomepageMovieListContextProvider>
     </HomepageContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
