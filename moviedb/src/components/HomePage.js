@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import MovieList from "./MovieList";
 
 export default function HomePage(props) {
   const [latestMovies, setLatestMovies] = useState([]);
@@ -20,18 +21,12 @@ export default function HomePage(props) {
       .catch((err) => console.log(err));
   }, []);
 
+  console.log("homepage: " + latestMovies);
+
   return (
     <div>
-      <div>
-        {latestMovies.map((movie) => (
-          <p>{movie.overview}</p>
-        ))}
-      </div>
-      <div>
-        {popularMovies.map((movie) => (
-          <p>{movie.overview}</p>
-        ))}
-      </div>
+      <MovieList props={latestMovies} />
+      <MovieList props={popularMovies} />
     </div>
   );
 }
