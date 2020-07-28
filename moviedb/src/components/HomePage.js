@@ -1,16 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { HomepageContext } from "../context/HomepageContext";
 
 export default function HomePage(props) {
-  const [latestMovies, setLatesMovies] = useState([]);
-
-  useEffect(() => {
-    const url = `http://localhost:8080/latest-movies`;
-    axios
-      .get(url)
-      .then((res) => setLatesMovies(res.data.results))
-      .catch((err) => console.log(err));
-  }, []);
+  const [latestMovies] = useContext(HomepageContext);
+  const [popularMovies] = useContext(HomepageContext);
 
   return (
     <div>
