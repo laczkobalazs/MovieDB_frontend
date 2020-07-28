@@ -22,10 +22,10 @@ export const HomepageContextProvider = (props) => {
   }, []);
 
   return (
-    <HomepageContextProvider.Provider
+    <HomepageContext.Provider
       value={[latestMovies, setLatestMovies, popularMovies, setPopularMovies]}
     >
       {props.children}
-    </HomepageContextProvider.Provider>
+    </HomepageContext.Provider>
   );
 };
