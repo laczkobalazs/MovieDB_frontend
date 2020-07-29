@@ -1,22 +1,35 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import { PopularMovieContext } from "../context/PopularMovieContext";
+import { LatestMovieContext } from "../context/LatestMovieContext";
+import { HomepageContext } from "../context/HomepageContext";
+import MovieList from "./MovieList";
 
 export default function HomePage(props) {
-  const [latestMovies, setLatesMovies] = useState([]);
-
-  useEffect(() => {
-    const url = `http://localhost:8080/latest-movies`;
-    axios
-      .get(url)
-      .then((res) => setLatesMovies(res.data.results))
-      .catch((err) => console.log(err));
-  }, []);
+  const [popularMovies] = useContext(PopularMovieContext);
+  const [latestMovies] = useContext(LatestMovieContext);
+  const [movieList, setMovieList] = useContext(HomepageContext);
+  const [movieType, setMovieType] = useState("latest");
 
   return (
     <div>
-      {latestMovies.map((movie) => (
-        <p>{movie.overview}</p>
-      ))}
+      <button
+        onClick={() => {
+          console.log(movieList);
+          console.log(movieType);
+
+          if (movieType === "latest") {
+            setMovieType("popular");
+            setMovieList(popularMovies);
+          } else {
+            setMovieType("latest");
+            setMovieList(latestMovies);
+          }
+        }}
+      >
+        Toggle
+      </button>
+
+      <MovieList movies={movieList} />
     </div>
   );
 }
