@@ -6,16 +6,19 @@ import * as serviceWorker from "./serviceWorker";
 import { PopularMovieContextProvider } from "../src/context/PopularMovieContext";
 import { LatestMovieContextProvider } from "../src/context/LatestMovieContext";
 import { HomepageContextProvider } from "../src/context/HomepageContext";
+import { WatchedMovieContextProvider } from "../src/context/WatchedMovieContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <PopularMovieContextProvider>
-      <LatestMovieContextProvider>
-        <HomepageContextProvider>
-          <App />
-        </HomepageContextProvider>
-      </LatestMovieContextProvider>
-    </PopularMovieContextProvider>
+    <WatchedMovieContextProvider>
+      <PopularMovieContextProvider>
+        <LatestMovieContextProvider>
+          <HomepageContextProvider>
+            <App />
+          </HomepageContextProvider>
+        </LatestMovieContextProvider>
+      </PopularMovieContextProvider>
+    </WatchedMovieContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
