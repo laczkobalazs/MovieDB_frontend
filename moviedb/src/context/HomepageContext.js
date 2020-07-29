@@ -1,34 +1,19 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
-import axios from "axios";
-import { HomepageMovieListContext } from "../context/HomepageMovieListContext";
+import { LatestMovieContext } from "../context/LatestMovieContext";
 
 export const HomepageContext = createContext();
 
 export const HomepageContextProvider = (props) => {
-  const [latestMovies, setLatestMovies] = useState([]);
-  const [popularMovies, setPopularMovies] = useState([]);
+  const [movieList, setMovieList] = useState([]);
+
+  const [latestMovies] = useContext(LatestMovieContext);
 
   useEffect(() => {
-    const latestURL = `http://localhost:8080/latest-movies`;
-    const popularURL = `http://localhost:8080/popular-movies`;
-    axios
-      .get(latestURL)
-      .then((res) => {
-        setLatestMovies(res.data.results);
-      })
-
-      .catch((err) => console.log(err));
-
-    axios
-      .get(popularURL)
-      .then((res) => setPopularMovies(res.data.results))
-      .catch((err) => console.log(err));
-  }, []);
+    setMovieList(latestMovies);
+  }, [latestMovies]);
 
   return (
-    <HomepageContext.Provider
-      value={[latestMovies, setLatestMovies, popularMovies, setPopularMovies]}
-    >
+    <HomepageContext.Provider value={[movieList, setMovieList]}>
       {props.children}
     </HomepageContext.Provider>
   );

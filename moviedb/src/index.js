@@ -3,16 +3,19 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { PopularMovieContextProvider } from "../src/context/PopularMovieContext";
+import { LatestMovieContextProvider } from "../src/context/LatestMovieContext";
 import { HomepageContextProvider } from "../src/context/HomepageContext";
-import { HomepageMovieListContextProvider } from "../src/context/HomepageMovieListContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <HomepageContextProvider>
-      <HomepageMovieListContextProvider>
-        <App />
-      </HomepageMovieListContextProvider>
-    </HomepageContextProvider>
+    <PopularMovieContextProvider>
+      <LatestMovieContextProvider>
+        <HomepageContextProvider>
+          <App />
+        </HomepageContextProvider>
+      </LatestMovieContextProvider>
+    </PopularMovieContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
