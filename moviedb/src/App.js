@@ -6,6 +6,7 @@ import SearchBar from "./components/SearchBar";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import SearchResult from "./components/SearchResult";
 import RandomMovie from "./components/RandomMovie";
+import WatchedMovies from "./components/WatchedMovies";
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
             path="/search-result/:searchString"
             component={SearchResult}
           />
-          <Route exact path="/random-movie" component={RandomMovie} />
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/random-movie" component={RandomMovie} />
+          <Route exact path="/watched-list" component={WatchedMovies} />
         </Router>
       </header>
     </div>
