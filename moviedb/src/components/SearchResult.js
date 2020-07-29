@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+import MovieList from "./MovieList";
 
 function SearchResult(props) {
   const [results, setResults] = useState([]);
@@ -45,9 +46,7 @@ function SearchResult(props) {
         Next page
       </button>
 
-      {results.map((result) => (
-        <p>{result.original_title}</p>
-      ))}
+      <MovieList movies={results} />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import MovieList from "./MovieList";
 
 export default function RandomMovie() {
   const [randomMovie, setRandomMovie] = useState([]);
@@ -11,9 +12,7 @@ export default function RandomMovie() {
 
   return (
     <div>
-      {randomMovie.map((movie) => (
-        <p>{movie.original_title}</p>
-      ))}
+      <MovieList movies={randomMovie} />
     </div>
   );
 }
