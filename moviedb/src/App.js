@@ -5,6 +5,7 @@ import HomePage from "./components/HomePage";
 import SearchBar from "./components/SearchBar";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import SearchResult from "./components/SearchResult";
+import RandomMovie from "./components/RandomMovie";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             path="/search-result/:searchString"
             component={SearchResult}
           />
+          <Route exact path="/random-movie" component={RandomMovie} />
           <Route exact path="/" component={HomePage} />
         </Router>
       </header>

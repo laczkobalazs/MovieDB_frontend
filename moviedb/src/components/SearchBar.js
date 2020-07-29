@@ -8,7 +8,7 @@ function SearchBar() {
     <div>
       <input
         type="text"
-        placeholder="Search movies by title"
+        placeholder="Search movies"
         value={searchString}
         onChange={(e) => setSearchString(e.target.value)}
       />
