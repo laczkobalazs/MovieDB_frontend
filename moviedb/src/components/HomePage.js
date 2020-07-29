@@ -8,8 +8,7 @@ export default function HomePage(props) {
   const [popularMovies] = useContext(PopularMovieContext);
   const [latestMovies] = useContext(LatestMovieContext);
   const [movieList, setMovieList] = useContext(HomepageContext);
-
-  let movieType = "latest";
+  const [movieType, setMovieType] = useState("latest");
 
   return (
     <div>
@@ -19,13 +18,11 @@ export default function HomePage(props) {
           console.log(movieType);
 
           if (movieType === "latest") {
-            movieType = "popular";
+            setMovieType("popular");
             setMovieList(popularMovies);
-            console.log(movieList);
-          } else if (movieType === "popular") {
-            movieType = "latest";
+          } else {
+            setMovieType("latest");
             setMovieList(latestMovies);
-            console.log(movieList);
           }
         }}
       >
