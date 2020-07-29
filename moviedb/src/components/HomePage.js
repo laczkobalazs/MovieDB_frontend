@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { PopularMovieContext } from "../context/PopularMovieContext";
 import { LatestMovieContext } from "../context/LatestMovieContext";
 import { HomepageContext } from "../context/HomepageContext";
@@ -14,9 +14,6 @@ export default function HomePage(props) {
     <div>
       <button
         onClick={() => {
-          console.log(movieList);
-          console.log(movieType);
-
           if (movieType === "latest") {
             setMovieType("popular");
             setMovieList(popularMovies);

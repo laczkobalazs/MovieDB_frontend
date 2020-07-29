@@ -9,7 +9,6 @@ export default function WatchList() {
     const url = "http://localhost:8080/watchlist";
     axios.get(url).then((res) => {
       setWatchListMovies(res.data.results);
-      console.log("infinite vagyok");
     });
   }, []);
 

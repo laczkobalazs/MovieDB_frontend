@@ -29,32 +29,28 @@ function Movie(props) {
         setDeleteUndoButton("Remove from watch list");
         break;
     }
-
-    const addToWatchedMovies = () => {
-      const url = `http://localhost:8080/add/watched-movie/${props.movie.id}`;
-      axios.get(url);
-    };
-
-    return (
-      <div>
-        <h1>{props.movie.title}</h1>
-        <p>{props.movie.original_language}</p>
-        <p>{props.movie.release_date}</p>
-        <p>{props.movie.popularity}</p>
-        <p>{props.movie.overview}</p>
-        {window.location.pathname !== "/watchlist" ? (
-          <button type="button" onClick={addToWatchList}>
-            Add to watch list
-          </button>
-        ) : (
-          <button type="button" onClick={decideEvent}>
-            {deleteUndoButton}
-          </button>
-        )}
-        <button onClick={addToWatchedMovies}>Add to Watched Movies.</button>
-      </div>
-    );
   };
+
+  const addToWatchedMovies = () => {
+    const url = `http://localhost:8080/add/watched-movie/${props.movie.id}`;
+    axios.get(url);
+  };
+
+  return (
+    <div>
+      <h3>{props.movie.title}</h3>
+      {window.location.pathname !== "/watchlist" ? (
+        <button type="button" onClick={addToWatchList}>
+          Add to watch list
+        </button>
+      ) : (
+        <button type="button" onClick={decideEvent}>
+          {deleteUndoButton}
+        </button>
+      )}
+      <button onClick={addToWatchedMovies}>Add to Watched Movies.</button>
+    </div>
+  );
 }
 
 export default Movie;
