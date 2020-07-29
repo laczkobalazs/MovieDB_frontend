@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Movie(props) {
   const [deleteUndoButton, setDeleteUndoButton] = useState(
@@ -38,7 +39,15 @@ function Movie(props) {
 
   return (
     <div>
-      <h3>{props.movie.title}</h3>
+      <Link to={`/movie/${props.movie.id}`}>
+        <h3>{props.movie.title}</h3>
+      </Link>
+      <img
+        src={`https://image.tmdb.org/t/p/original${props.movie.poster_path}`}
+        alt=""
+        width="20%"
+        height="auto"
+      />
       {window.location.pathname !== "/watchlist" ? (
         <button type="button" onClick={addToWatchList}>
           Add to watch list
