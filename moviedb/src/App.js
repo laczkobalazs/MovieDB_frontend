@@ -9,6 +9,8 @@ import WatchList from "./components/WatchList";
 import WatchedMovies from "./components/WatchedMovies";
 import DetailedMovie from "./components/DetailedMovie";
 import Experiences from "./components/ExperienceMovies";
+import SuggestedMovies from "./components/SuggestedMovies";
+import NotSuggestedMovies from "./components/NotSuggestedMovies";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route exact path="/watched-list" component={WatchedMovies} />
           <Route exact path="/movie/:movieId" component={DetailedMovie} />
           <Route exact path="/experiences" component={Experiences} />
+          <Route exact path="/suggested" component={SuggestedMovies} />
+          <Route exact path="/not-suggested" component={NotSuggestedMovies} />
         </Router>
       </header>
     </div>
