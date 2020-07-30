@@ -104,6 +104,23 @@ function Movie(props) {
       .then((res) => console.log(res));
   };
 
+  const [deleteUndoButton4, setDeleteUndoButton4] = useState(
+    "Add to Watch List"
+  );
+
+  const decideEventAddToWatchList = () => {
+    switch (deleteUndoButton4) {
+      case "Add to Watch List":
+        addToWatchList();
+        setDeleteUndoButton4("Undo");
+        break;
+      default:
+        removeFromWatchList();
+        setDeleteUndoButton4("Add to Watch List");
+        break;
+    }
+  };
+
   return (
     <div className="movie-container">
       <div className="cellphone-container">
@@ -174,8 +191,11 @@ function Movie(props) {
                   </div>
                 )}
                 {window.location.pathname !== "/watchlist" ? (
-                  <div className="watch-btn" onClick={addToWatchList}>
-                    <h3>Add to watch list</h3>
+                  <div
+                    className="watch-btn"
+                    onClick={decideEventAddToWatchList}
+                  >
+                    <h3>{deleteUndoButton4}</h3>
                   </div>
                 ) : (
                   <div className="watch-btn" onClick={decideEvent}>
