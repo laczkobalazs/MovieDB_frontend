@@ -11,7 +11,7 @@ export const DislikedMovieContextProvider = (props) => {
     axios
       .get(dislikedURL)
       .then((res) => {
-        setDislikedMovies(res.data.results);
+        setDislikedMovies(res.data);
       })
       .catch((err) => console.log(err));
   }, []);

@@ -12,7 +12,6 @@ export const WatchedMovieContextProvider = (props) => {
       .get(watchedMoviesURL)
       .then((res) => {
         setWatchedMovies(res.data);
-        console.log("all-watched-movies API: " + res.data);
       })
       .catch((err) => console.log(err));
   }, []);

@@ -8,6 +8,7 @@ import RandomMovie from "./components/RandomMovie";
 import WatchList from "./components/WatchList";
 import WatchedMovies from "./components/WatchedMovies";
 import DetailedMovie from "./components/DetailedMovie";
+import Experiences from "./components/ExperienceMovies";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/random-movie" component={RandomMovie} />
           <Route exact path="/watched-list" component={WatchedMovies} />
           <Route exact path="/movie/:movieId" component={DetailedMovie} />
+          <Route exact path="/experiences" component={Experiences} />
         </Router>
       </header>
     </div>

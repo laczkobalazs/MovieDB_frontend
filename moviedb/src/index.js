@@ -9,20 +9,23 @@ import { HomepageContextProvider } from "../src/context/HomepageContext";
 import { WatchedMovieContextProvider } from "../src/context/WatchedMovieContext";
 import { LikedMovieContextProvider } from "../src/context/LikedMovieContext";
 import { DislikedMovieContextProvider } from "../src/context/DislikedMovieContext";
+import { ExperienceContextProvider } from "../src/context/ExperienceContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <DislikedMovieContextProvider>
       <LikedMovieContextProvider>
-        <WatchedMovieContextProvider>
-          <PopularMovieContextProvider>
-            <LatestMovieContextProvider>
-              <HomepageContextProvider>
-                <App />
-              </HomepageContextProvider>
-            </LatestMovieContextProvider>
-          </PopularMovieContextProvider>
-        </WatchedMovieContextProvider>
+        <ExperienceContextProvider>
+          <WatchedMovieContextProvider>
+            <PopularMovieContextProvider>
+              <LatestMovieContextProvider>
+                <HomepageContextProvider>
+                  <App />
+                </HomepageContextProvider>
+              </LatestMovieContextProvider>
+            </PopularMovieContextProvider>
+          </WatchedMovieContextProvider>
+        </ExperienceContextProvider>
       </LikedMovieContextProvider>
     </DislikedMovieContextProvider>
   </React.StrictMode>,

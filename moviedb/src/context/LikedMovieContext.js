@@ -11,7 +11,7 @@ export const LikedMovieContextProvider = (props) => {
     axios
       .get(likedURL)
       .then((res) => {
-        setLikedMovies(res.data.results);
+        setLikedMovies(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
