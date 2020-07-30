@@ -11,12 +11,14 @@ import DetailedMovie from "./components/DetailedMovie";
 import Experiences from "./components/ExperienceMovies";
 import SuggestedMovies from "./components/SuggestedMovies";
 import NotSuggestedMovies from "./components/NotSuggestedMovies";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <Router>
+          <Navbar />
           <SearchBar />
           <Route
             exact
