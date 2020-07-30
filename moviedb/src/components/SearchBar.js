@@ -6,7 +6,7 @@ function SearchBar() {
   const [searchString, setSearchString] = useState("");
 
   return (
-    <div>
+    <div style={{ margin: "0.5rem" }}>
       <input
         type="search"
         value={searchString}

@@ -15,18 +15,27 @@ export default function Experiences(props) {
   return (
     <div>
       <button
+        style={{ borderRadius: "0.3rem", backgroundColor: "green" }}
+        disabled={movieType === "liked"}
         onClick={() => {
-          if (movieType === "liked") {
-            setMovieType("disliked");
-            setMovieList(dislikedList);
-          } else {
-            setMovieType("liked");
-            setMovieList(likedList);
-          }
+          setMovieType("liked");
+          setMovieList(likedList);
         }}
       >
-        Toggle
+        Liked Movies
       </button>
+
+      <button
+        style={{ borderRadius: "0.3rem", backgroundColor: "red" }}
+        disabled={movieType === "disliked"}
+        onClick={() => {
+          setMovieType("disliked");
+          setMovieList(dislikedList);
+        }}
+      >
+        Disliked Movies
+      </button>
+
       <MovieList movies={movieList} />
     </div>
   );

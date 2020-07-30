@@ -13,17 +13,24 @@ export default function HomePage(props) {
   return (
     <div>
       <button
+        style={{ borderRadius: "0.3rem" }}
+        disabled={movieType === "latest"}
         onClick={() => {
-          if (movieType === "latest") {
-            setMovieType("popular");
-            setMovieList(popularMovies);
-          } else {
-            setMovieType("latest");
-            setMovieList(latestMovies);
-          }
+          setMovieType("latest");
+          setMovieList(latestMovies);
         }}
       >
-        Toggle
+        Latest Movies
+      </button>
+      <button
+        style={{ borderRadius: "0.3rem" }}
+        disabled={movieType === "popular"}
+        onClick={() => {
+          setMovieType("popular");
+          setMovieList(popularMovies);
+        }}
+      >
+        Popular Movies
       </button>
 
       <MovieList movies={movieList} />

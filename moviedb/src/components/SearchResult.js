@@ -36,10 +36,15 @@ function SearchResult(props) {
       <p>
         Pages: {pageNumber}/{maxPageNumber}
       </p>
-      <button onClick={decreasePageNumber} disabled={pageNumber === 1}>
+      <button
+        style={{ borderRadius: "0.3rem" }}
+        onClick={decreasePageNumber}
+        disabled={pageNumber === 1}
+      >
         Previous page
       </button>
       <button
+        style={{ borderRadius: "0.3rem" }}
         onClick={increasePageNumber}
         disabled={pageNumber >= maxPageNumber}
       >
