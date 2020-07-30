@@ -70,7 +70,7 @@ function Movie(props) {
 
   const decideEventWatched = () => {
     switch (deleteUndoButton2) {
-      case "Remove from Watched List":
+      case "Remove from watched List":
         removeFromWatched();
         setDeleteUndoButton2("Undo");
         break;
@@ -81,19 +81,17 @@ function Movie(props) {
     }
   };
 
-  const [deleteUndoButton3, setDeleteUndoButton3] = useState(
-    "Add to Watched List"
-  );
+  const [deleteUndoButton3, setDeleteUndoButton3] = useState("Seen it!");
 
   const decideEventAddToWatched = () => {
     switch (deleteUndoButton3) {
-      case "Add to Watched List":
+      case "Seen it!":
         addToWatchedMovies();
         setDeleteUndoButton3("Undo");
         break;
       default:
         removeFromWatchedAddToWatch();
-        setDeleteUndoButton3("Add to Watched List");
+        setDeleteUndoButton3("Seen it!");
         break;
     }
   };
@@ -104,19 +102,17 @@ function Movie(props) {
       .then((res) => console.log(res));
   };
 
-  const [deleteUndoButton4, setDeleteUndoButton4] = useState(
-    "Add to Watch List"
-  );
+  const [deleteUndoButton4, setDeleteUndoButton4] = useState("Want to see it!");
 
   const decideEventAddToWatchList = () => {
     switch (deleteUndoButton4) {
-      case "Add to Watch List":
+      case "Want to see it!":
         addToWatchList();
         setDeleteUndoButton4("Undo");
         break;
       default:
         removeFromWatchList();
-        setDeleteUndoButton4("Add to Watch List");
+        setDeleteUndoButton4("Want to see it!");
         break;
     }
   };
@@ -147,14 +143,14 @@ function Movie(props) {
               <div className="col1">
                 <Link to={`/movie/${props.movie.id}`}>
                   {props.movie.title ? (
-                    <h1>{props.movie.title}</h1>
+                    <h2>{props.movie.title}</h2>
                   ) : (
-                    <h1>{props.movie.original_title}</h1>
+                    <h2>{props.movie.original_title}</h2>
                   )}
                 </Link>
                 <ul className="movie-gen">
                   <li>{props.movie.release_date} /</li>
-                  <li>{props.movie.popularity} /</li>
+                  <li>popularity: {props.movie.popularity} /</li>
                   <li>language: {props.movie.original_language}</li>
                 </ul>
               </div>
@@ -163,16 +159,22 @@ function Movie(props) {
               <div className="col2">
                 <h5>SUMMARY</h5>
               </div>
-              <div className="col2">
-                <ul className="movie-likes">
-                  <li>
-                    <i className="material-icons">&#xE813;</i>124
-                  </li>
-                  <li>
-                    <i className="material-icons">&#xE813;</i>3
-                  </li>
-                </ul>
-              </div>
+              <img
+                className="likeDislike"
+                onClick={addToLikedMovieList}
+                src={
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png"
+                }
+                alt=""
+              />
+              <img
+                className="likeDislike"
+                onClick={addToDislikedMovieList}
+                src={
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Broken_heart.svg/586px-Broken_heart.svg.png"
+                }
+                alt=""
+              />
             </div>
             <div className="mr-grid">
               <div className="col1">
@@ -202,12 +204,6 @@ function Movie(props) {
                     <h3>{deleteUndoButton}</h3>
                   </div>
                 )}
-                {/* <div className="watch-btn" onClick={addToLikedMovieList}>
-                  <h3>Like</h3>
-                </div>
-                <div className="watch-btn" onClick={addToDislikedMovieList}>
-                  <h3>Dislike</h3>
-                </div> */}
               </div>
               <div className="col6 action-btn"></div>
               <div className="col6 action-btn"></div>
