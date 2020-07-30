@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "../SearchBarStyle.css";
 
 function SearchBar() {
   const [searchString, setSearchString] = useState("");
@@ -7,17 +8,16 @@ function SearchBar() {
   return (
     <div>
       <input
-        type="text"
-        placeholder="Search movies"
+        type="search"
         value={searchString}
         onChange={(e) => setSearchString(e.target.value)}
       />
-      <button disabled={!searchString}>
+      <button className="search-button" disabled={!searchString}>
         <Link
           to={`/search-result/${searchString}`}
           style={{ textDecoration: "none", color: "black" }}
         >
-          search
+          Search!
         </Link>
       </button>
     </div>
