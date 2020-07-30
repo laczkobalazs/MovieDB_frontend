@@ -7,18 +7,24 @@ import { PopularMovieContextProvider } from "../src/context/PopularMovieContext"
 import { LatestMovieContextProvider } from "../src/context/LatestMovieContext";
 import { HomepageContextProvider } from "../src/context/HomepageContext";
 import { WatchedMovieContextProvider } from "../src/context/WatchedMovieContext";
+import { LikedMovieContextProvider } from "../src/context/LikedMovieContext";
+import { DislikedMovieContextProvider } from "../src/context/DislikedMovieContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <WatchedMovieContextProvider>
-      <PopularMovieContextProvider>
-        <LatestMovieContextProvider>
-          <HomepageContextProvider>
-            <App />
-          </HomepageContextProvider>
-        </LatestMovieContextProvider>
-      </PopularMovieContextProvider>
-    </WatchedMovieContextProvider>
+    <DislikedMovieContextProvider>
+      <LikedMovieContextProvider>
+        <WatchedMovieContextProvider>
+          <PopularMovieContextProvider>
+            <LatestMovieContextProvider>
+              <HomepageContextProvider>
+                <App />
+              </HomepageContextProvider>
+            </LatestMovieContextProvider>
+          </PopularMovieContextProvider>
+        </WatchedMovieContextProvider>
+      </LikedMovieContextProvider>
+    </DislikedMovieContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

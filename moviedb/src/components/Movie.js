@@ -1,8 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { LikedMovieContext } from "../context/LikedMovieContext";
+import { DislikedMovieContext } from "../context/DislikedMovieContext";
 
 function Movie(props) {
+  const addToLikedMovieList = (e) => {
+    axios
+      .get(`http://localhost:8080/add/liked-movie/${props.movie.id}`)
+      .then((res) => console.log(res));
+  };
+
+  const addToDislikedMovieList = (e) => {
+    axios
+      .get(`http://localhost:8080/add/disliked-movie/${props.movie.id}`)
+      .then((res) => console.log(res));
+  };
+
   const [deleteUndoButton, setDeleteUndoButton] = useState(
     "Remove from watch list"
   );
@@ -111,6 +125,13 @@ function Movie(props) {
           {deleteUndoButton2}
         </button>
       )}
+      <button type="button" onClick={addToLikedMovieList}>
+        Like
+      </button>
+
+      <button type="button" onClick={addToDislikedMovieList}>
+        Dislike
+      </button>
     </div>
   );
 }
