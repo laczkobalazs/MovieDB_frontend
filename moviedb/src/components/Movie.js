@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { LikedMovieContext } from "../context/LikedMovieContext";
-import { DislikedMovieContext } from "../context/DislikedMovieContext";
+import "../MovieComponent.scss";
 
 function Movie(props) {
+  const [shortenedOverview, setShortenedOverview] = useState("");
+
+  useEffect(() => {
+    if (props.movie.overview) {
+      setShortenedOverview(props.movie.overview.slice(0, 200) + "...");
+    } else {
+      setShortenedOverview("No description.");
+    }
+  }, [props.movie.overview]);
+
   const addToLikedMovieList = (e) => {
     axios
       .get(`http://localhost:8080/add/liked-movie/${props.movie.id}`)
@@ -96,42 +105,97 @@ function Movie(props) {
   };
 
   return (
-    <div>
-      <Link to={`/movie/${props.movie.id}`}>
-        <h3>{props.movie.title}</h3>
-      </Link>
-      <img
-        src={`https://image.tmdb.org/t/p/original${props.movie.poster_path}`}
-        alt=""
-        width="20%"
-        height="auto"
-      />
-      {window.location.pathname !== "/watchlist" ? (
-        <button type="button" onClick={addToWatchList}>
-          Add to watch list
-        </button>
-      ) : (
-        <button type="button" onClick={decideEvent}>
-          {deleteUndoButton}
-        </button>
-      )}
-
-      {window.location.pathname !== "/watched-list" ? (
-        <button type="button" onClick={decideEventAddToWatched}>
-          {deleteUndoButton3}
-        </button>
-      ) : (
-        <button type="button" onClick={decideEventWatched}>
-          {deleteUndoButton2}
-        </button>
-      )}
-      <button type="button" onClick={addToLikedMovieList}>
-        Like
-      </button>
-
-      <button type="button" onClick={addToDislikedMovieList}>
-        Dislike
-      </button>
+    <div className="movie-container">
+      <div className="cellphone-container">
+        <div className="movie">
+          <div className="movie-img">
+            {props.movie.poster_path ? (
+              <img
+                src={`https://image.tmdb.org/t/p/original${props.movie.poster_path}`}
+                alt=""
+                width="100%"
+                heigth="auto"
+              />
+            ) : (
+              <img
+                src={`https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101065/112815953-stock-vector-no-image-available-icon-flat-vector.jpg?ver=6`}
+                alt=""
+                width="100%"
+                heigth="auto"
+              />
+            )}
+          </div>
+          <div className="text-movie-cont">
+            <div className="mr-grid">
+              <div className="col1">
+                <Link to={`/movie/${props.movie.id}`}>
+                  {props.movie.title ? (
+                    <h1>{props.movie.title}</h1>
+                  ) : (
+                    <h1>{props.movie.original_title}</h1>
+                  )}
+                </Link>
+                <ul className="movie-gen">
+                  <li>{props.movie.release_date} /</li>
+                  <li>{props.movie.popularity} /</li>
+                  <li>language: {props.movie.original_language}</li>
+                </ul>
+              </div>
+            </div>
+            <div className="mr-grid summary-row">
+              <div className="col2">
+                <h5>SUMMARY</h5>
+              </div>
+              <div className="col2">
+                <ul className="movie-likes">
+                  <li>
+                    <i className="material-icons">&#xE813;</i>124
+                  </li>
+                  <li>
+                    <i className="material-icons">&#xE813;</i>3
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="mr-grid">
+              <div className="col1">
+                <p className="movie-description">{shortenedOverview}</p>
+              </div>
+            </div>
+            <div className="mr-grid action-row">
+              <div className="col2">
+                {window.location.pathname !== "/watched-list" ? (
+                  <div className="watch-btn" onClick={decideEventAddToWatched}>
+                    <h3>{deleteUndoButton3}</h3>
+                  </div>
+                ) : (
+                  <div className="watch-btn" onClick={decideEventWatched}>
+                    <h3>{deleteUndoButton2}</h3>
+                  </div>
+                )}
+                {window.location.pathname !== "/watchlist" ? (
+                  <div className="watch-btn" onClick={addToWatchList}>
+                    <h3>Add to watch list</h3>
+                  </div>
+                ) : (
+                  <div className="watch-btn" onClick={decideEvent}>
+                    <h3>{deleteUndoButton}</h3>
+                  </div>
+                )}
+                {/* <div className="watch-btn" onClick={addToLikedMovieList}>
+                  <h3>Like</h3>
+                </div>
+                <div className="watch-btn" onClick={addToDislikedMovieList}>
+                  <h3>Dislike</h3>
+                </div> */}
+              </div>
+              <div className="col6 action-btn"></div>
+              <div className="col6 action-btn"></div>
+              <div className="col6 action-btn"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
