@@ -7,7 +7,7 @@
 }
 body {
   margin: 0px;
-  padding: 0px;
+  padding-top: 4rem;
   font-family: "Open Sans", sans-serif;
 }
 section {
@@ -25,16 +25,27 @@ h1 {
   color: #002e5b;
   text-align: center;
 }
+
 h1 span {
   font-weight: 500;
 }
 
+.home {
+  margin-left: 0.3rem;
+  display: block;
+}
+
 .header {
+  height: 4rem;
   width: 100%;
   display: table;
   background-color: #fe4141;
   top: 0;
   width: 100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 12;
 }
 #logo {
   float: left;
@@ -58,7 +69,7 @@ nav ul li:last-child {
 }
 nav ul li a {
   color: #002e5b;
-  font-size: 18px;
+  font-size: 1rem;
   padding: 25px 20px;
   display: inline-block;
   transition: all 0.5s ease 0s;
@@ -100,7 +111,6 @@ label {
 .content {
   display: table;
   margin-bottom: 60px;
-  width: 900px;
 }
 .content h2 {
   font-size: 18px;
