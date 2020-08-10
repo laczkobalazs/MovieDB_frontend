@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../MovieComponent.scss";
+import "../style/MovieComponent.scss";
 
 function Movie(props) {
   const [shortenedOverview, setShortenedOverview] = useState("");
