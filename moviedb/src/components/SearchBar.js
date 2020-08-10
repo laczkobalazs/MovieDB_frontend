@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../SearchBarStyle.css";
+import "../style/SearchBarStyle.css";
 
 function SearchBar() {
   const [searchString, setSearchString] = useState("");
