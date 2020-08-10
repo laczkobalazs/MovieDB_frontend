@@ -87,6 +87,7 @@ function Movie(props) {
     switch (deleteUndoButton3) {
       case "Seen it!":
         addToWatchedMovies();
+        removeFromWatchList();
         setDeleteUndoButton3("Undo");
         break;
       default:
