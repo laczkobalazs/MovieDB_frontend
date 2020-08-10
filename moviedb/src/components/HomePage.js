@@ -20,7 +20,7 @@ export default function HomePage(props) {
           setMovieList(latestMovies);
         }}
       >
-        Latest Movies
+        Movies in Theatres
       </button>
       <button
         style={{ borderRadius: "0.3rem" }}
