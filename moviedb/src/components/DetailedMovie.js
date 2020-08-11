@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Axios from "axios";
 import "../style/DetailedPage.css";
-import { Link } from "react-router-dom";
 import Modal from "@material-ui/core/Modal";
 import { makeStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
@@ -133,7 +132,11 @@ function DetailedMovie() {
                 <p>
                   {movie.overview}
                   <br />
-                  <a href={movie.homepage} target="_blank">
+                  <a
+                    href={movie.homepage}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     More details about it
                   </a>
                 </p>
