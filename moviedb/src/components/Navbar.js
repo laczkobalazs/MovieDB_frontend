@@ -1,52 +1,68 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../style/NavbarStyle.css";
 import { LanguageContext } from "../context/LanguageContext";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [language, setLanguage] = useContext(LanguageContext);
   return (
     <div className="header">
-      <a className="home" href="/" id="logo" target="_blank">
+      <Link to={"/"} id="logo" target="_blank">
         The Movie Database
-      </a>
-      <button onClick={() => setLanguage("en")}>Language</button>
+      </Link>
+      <button
+        onClick={() => {
+          switch (language) {
+            case "en":
+              setLanguage("hu");
+              break;
+            case "hu":
+              setLanguage("en");
+              break;
+            default:
+              setLanguage("en");
+          }
+        }}
+      >
+        {language === "hu" ? "English" : "Magyar"}
+      </button>
       <nav>
         <ul>
           <li>
-            <a href="/">
+            <Link to={"/"}>
               <i class="icon-home"></i>Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/experiences">
+            <Link to={"/experiences"}>
               <i class="icon-heart"></i>My collection
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/watchlist">
+            <Link to={"/watchlist"}>
               <i class="icon-list"></i>Want to see it
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/watched-list">
+            <Link to={"/watched-list"}>
               <i class="icon-picture"></i>Seen it
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/suggested">
+            <Link to={"/suggested"}>
               <i class="icon-plus"></i>Watch!
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/not-suggested">
+            <Link to={"/not-suggested"}>
               <i class="icon-minus"></i>Don't watch!
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/random-movie">
+            <Link to={"/random-movie"}>
               <i class="icon-question"></i>Random movie
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

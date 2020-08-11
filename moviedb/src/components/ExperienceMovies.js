@@ -1,16 +1,32 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import MovieList from "./MovieList";
-import { ExperienceContext } from "../context/ExperienceContext";
-import { DislikedMovieContext } from "../context/DislikedMovieContext";
-import { LikedMovieContext } from "../context/LikedMovieContext";
+import { LanguageContext } from "../context/LanguageContext";
+import axios from "axios";
 
 export default function Experiences(props) {
-  const [movieList, setMovieList] = useContext(ExperienceContext);
-
-  const [likedList, setLikedList] = useContext(LikedMovieContext);
-  const [dislikedList, setDislikedList] = useContext(DislikedMovieContext);
-
+  const [language, setLanguage] = useContext(LanguageContext);
+  const [movieList, setMovieList] = useState([]);
   const [movieType, setMovieType] = useState("liked");
+
+  useEffect(() => {
+    if (movieType === "liked") {
+      const likedURL = `http://localhost:8080/all-liked-movies/${language}`;
+      axios
+        .get(likedURL)
+        .then((res) => {
+          setMovieList(res.data);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      const dislikedURL = `http://localhost:8080/all-disliked-movies/${language}`;
+      axios
+        .get(dislikedURL)
+        .then((res) => {
+          setMovieList(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [language, movieType]);
 
   return (
     <div>
@@ -19,7 +35,6 @@ export default function Experiences(props) {
         disabled={movieType === "liked"}
         onClick={() => {
           setMovieType("liked");
-          setMovieList(likedList);
         }}
       >
         Liked Movies
@@ -30,7 +45,6 @@ export default function Experiences(props) {
         disabled={movieType === "disliked"}
         onClick={() => {
           setMovieType("disliked");
-          setMovieList(dislikedList);
         }}
       >
         Disliked Movies

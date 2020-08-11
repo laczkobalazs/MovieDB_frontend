@@ -1,42 +1,32 @@
 import React, { useState, useContext, useEffect } from "react";
-import { PopularMovieContext } from "../context/PopularMovieContext";
-import { LatestMovieContext } from "../context/LatestMovieContext";
-import { HomepageContext } from "../context/HomepageContext";
 import MovieList from "./MovieList";
 import { LanguageContext } from "../context/LanguageContext";
 import axios from "axios";
 
 export default function HomePage(props) {
   const [language, setLanguage] = useContext(LanguageContext);
-  const [popularMovies, setPopularMovies] = useState([]);
-  const [latestMovies, setLatestMovies] = useState([]);
   const [movieList, setMovieList] = useState([]);
   const [movieType, setMovieType] = useState("latest");
 
   useEffect(() => {
-    const latestURL = `http://localhost:8080/latest-movies/${language}`;
-    axios
-      .get(latestURL)
-      .then((res) => {
-        setLatestMovies(res.data.results);
-        if (movieType === "latest") {
+    if (movieType === "latest") {
+      const latestURL = `http://localhost:8080/latest-movies/${language}`;
+      axios
+        .get(latestURL)
+        .then((res) => {
           setMovieList(res.data.results);
-          console.log(language);
-        }
-      })
-      .catch((err) => console.log(err));
-    const popularURL = `http://localhost:8080/popular-movies`;
-    axios
-      .get(popularURL)
-      .then((res) => {
-        setPopularMovies(res.data.results);
-        if (movieType === "popular") {
-          setMovieList(popularMovies);
-          console.log(popularMovies);
-        }
-      })
-      .catch((err) => console.log(err));
-  }, [language]);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      const popularURL = `http://localhost:8080/popular-movies/${language}`;
+      axios
+        .get(popularURL)
+        .then((res) => {
+          setMovieList(res.data.results);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [language, movieType]);
   return (
     <div>
       <button
@@ -44,7 +34,6 @@ export default function HomePage(props) {
         disabled={movieType === "latest"}
         onClick={() => {
           setMovieType("latest");
-          setMovieList(latestMovies);
         }}
       >
         Movies in Theatres
@@ -54,7 +43,6 @@ export default function HomePage(props) {
         disabled={movieType === "popular"}
         onClick={() => {
           setMovieType("popular");
-          setMovieList(popularMovies);
         }}
       >
         Popular Movies
