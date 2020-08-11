@@ -9,9 +9,9 @@ function DetailedMovie() {
   const [movies, setMovie] = useState([]);
 
   useEffect(() => {
-    Axios.get(`http://localhost:8080/movie/${movieId}`).then((res) =>
-      setMovie([res.data])
-    );
+    Axios.get(`http://localhost:8080/movie/${movieId}`).then((res) => {
+      setMovie([res.data]);
+    });
   }, [movieId]);
 
   return (
@@ -70,6 +70,11 @@ function DetailedMovie() {
                     More details about it
                   </a>
                 </p>
+                <div>
+                  {movie.credits.cast.slice(0, 5).map((star) => (
+                    <p>{star.name}</p>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
