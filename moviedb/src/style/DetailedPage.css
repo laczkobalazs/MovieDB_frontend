@@ -65,34 +65,34 @@ a:hover {
 
 .cover {
   position: absolute;
-  top: 160px;
-  left: 40px;
+  top: 18.75rem;
+  left: 2.5rem;
   z-index: 2;
 }
 
 .description {
   bottom: 0px;
-  height: 200px;
-  font-size: 16px;
-  line-height: 26px;
+  height: 12.5rem;
+  font-size: 1rem;
+  line-height: 1.625rem;
   color: black;
 }
 
 .column1 {
-  padding-left: 50px;
-  padding-top: 120px;
-  width: 400px;
+  padding-left: 3.125rem;
+  padding-top: 7.5rem;
+  width: 25rem;
   float: left;
   text-align: center;
 }
 
 .tag {
   background: white;
-  border-radius: 10px;
-  padding: 3px 8px;
-  font-size: 14px;
-  margin-right: 4px;
-  line-height: 35px;
+  border-radius: 0.625rem;
+  padding: 0.1875rem 0.5rem;
+  font-size: 0.875rem;
+  margin-right: 0.25rem;
+  line-height: 2.1875rem;
   cursor: pointer;
 }
 
@@ -101,10 +101,10 @@ a:hover {
 }
 
 .column2 {
-  padding-left: 41px;
-  padding-top: 30px;
-  margin-left: 20px;
-  width: 480px;
+  padding-left: 2.5625rem;
+  padding-top: 1.875rem;
+  margin-left: 1.25rem;
+  width: 25rem;
   float: left;
 }
 
@@ -112,4 +112,56 @@ fieldset,
 label {
   margin: 0;
   padding: 0;
+}
+
+body {
+  background: #000;
+}
+
+.player {
+  background: none;
+  width: 4.375rem;
+  height: 4.375rem;
+  border: solid 5px #fff;
+  border-radius: 100%;
+  position: absolute;
+  top: 30rem;
+  left: 9.375rem;
+  z-index: 15;
+  text-indent: -9999px;
+  box-shadow: 1px 1px 3px #999999;
+}
+
+.player span {
+  width: 0;
+  height: 0;
+  border-top: 0.9375rem solid transparent;
+  border-left: 1.25rem solid #fff;
+  border-bottom: 0.9375rem solid transparent;
+  position: absolute;
+  top: 20%;
+  left: 36%;
+}
+
+.player:hover {
+  background: #4ccaea;
+  cursor: pointer;
+  opacity: 0.8;
+  border: none;
+  position: absolute;
+  width: 4.375rem;
+  height: 4.375rem;
+  box-shadow: none;
+}
+
+.player:hover span {
+  top: 25%;
+  left: 38%;
+}
+
+.close {
+  cursor: pointer;
+  position: absolute;
+  top: 2%;
+  right: 2%;
 }
