@@ -3,10 +3,23 @@ import { useParams } from "react-router";
 import Axios from "axios";
 import "../style/DetailedPage.css";
 import { Link } from "react-router-dom";
+import Modal from "@material-ui/core/Modal";
+import { makeStyles } from "@material-ui/core/styles";
+import styled from "styled-components";
+
+const Warning = styled.h1`
+  position: absolute;
+  top: 35%;
+  left: 37%;
+  color: red;
+`;
 
 function DetailedMovie() {
   const { movieId } = useParams();
   const [movies, setMovie] = useState([]);
+  const [videoURL, setVideoURL] = useState("");
+  const [open, setOpen] = useState(false);
+  const [modalStyle] = useState(getModalStyle);
 
   useEffect(() => {
     Axios.get(`http://localhost:8080/movie/${movieId}`).then((res) => {
@@ -14,8 +27,59 @@ function DetailedMovie() {
     });
   }, [movieId]);
 
+  useEffect(() => {
+    Axios.get(`http://localhost:8080/movie-url/${movieId}`).then((res) => {
+      if (res.data.results[0]) {
+        setVideoURL([res.data.results[0].key]);
+      }
+    });
+  }, [movieId]);
+
+  const useStyles = makeStyles((theme) => ({
+    paper: {
+      position: "absolute",
+      width: "60%",
+      height: "60%",
+      backgroundColor: theme.palette.background.paper,
+      border: "2px solid #000",
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+    },
+  }));
+
+  const classes = useStyles();
+
+  function getModalStyle() {
+    const top = 50;
+    const left = 50;
+
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      transform: `translate(-${top}%, -${left}%)`,
+    };
+  }
+
   return (
     <div>
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <div style={modalStyle} className={classes.paper}>
+          <span className="close" onClick={() => setOpen(false)}>
+            X
+          </span>
+          {videoURL !== "" ? (
+            <iframe
+              width="100%"
+              height="100%"
+              title="trailer"
+              src={`https://www.youtube.com/embed/${videoURL}?autoplay=1`}
+            ></iframe>
+          ) : (
+            <Warning>{"No trailer found :("}</Warning>
+          )}
+        </div>
+      </Modal>
+
       {movies.map((movie) => (
         <div class="movie-card">
           <div class="container">
@@ -41,6 +105,9 @@ function DetailedMovie() {
 
             <div class="description">
               <div class="column1">
+                <div class="player" onClick={() => setOpen(true)}>
+                  <span>Play</span>
+                </div>
                 <img
                   src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                   alt="cover"
