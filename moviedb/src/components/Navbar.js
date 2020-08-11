@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../style/NavbarStyle.css";
+import { LanguageContext } from "../context/LanguageContext";
+import { useContext } from "react";
 
 export default function Navbar() {
+  const [language, setLanguage] = useContext(LanguageContext);
   return (
     <div className="header">
       <a className="home" href="/" id="logo" target="_blank">
         The Movie Database
       </a>
-
+      <button onClick={() => setLanguage("en")}>Language</button>
       <nav>
         <ul>
           <li>

@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
 import Axios from "axios";
 import "../style/DetailedPage.css";
 import { Link } from "react-router-dom";
+import { LanguageContext } from "../context/LanguageContext";
 
 function DetailedMovie() {
   const { movieId } = useParams();
   const [movies, setMovie] = useState([]);
 
+  const [language, setLanguage] = useContext(LanguageContext);
+  console.log(language);
   useEffect(() => {
-    Axios.get(`http://localhost:8080/movie/${movieId}`).then((res) => {
-      setMovie([res.data]);
-    });
-  }, [movieId]);
+    Axios.get(`http://localhost:8080/movie/${movieId}/${language}`).then(
+      (res) => {
+        setMovie([res.data]);
+      }
+    );
+  }, [movieId, language]);
 
   return (
     <div>

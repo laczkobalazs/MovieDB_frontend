@@ -1,15 +1,42 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { PopularMovieContext } from "../context/PopularMovieContext";
 import { LatestMovieContext } from "../context/LatestMovieContext";
 import { HomepageContext } from "../context/HomepageContext";
 import MovieList from "./MovieList";
+import { LanguageContext } from "../context/LanguageContext";
+import axios from "axios";
 
 export default function HomePage(props) {
-  const [popularMovies] = useContext(PopularMovieContext);
-  const [latestMovies] = useContext(LatestMovieContext);
-  const [movieList, setMovieList] = useContext(HomepageContext);
+  const [language, setLanguage] = useContext(LanguageContext);
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [latestMovies, setLatestMovies] = useState([]);
+  const [movieList, setMovieList] = useState([]);
   const [movieType, setMovieType] = useState("latest");
 
+  useEffect(() => {
+    const latestURL = `http://localhost:8080/latest-movies/${language}`;
+    axios
+      .get(latestURL)
+      .then((res) => {
+        setLatestMovies(res.data.results);
+        if (movieType === "latest") {
+          setMovieList(res.data.results);
+          console.log(language);
+        }
+      })
+      .catch((err) => console.log(err));
+    const popularURL = `http://localhost:8080/popular-movies`;
+    axios
+      .get(popularURL)
+      .then((res) => {
+        setPopularMovies(res.data.results);
+        if (movieType === "popular") {
+          setMovieList(popularMovies);
+          console.log(popularMovies);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, [language]);
   return (
     <div>
       <button

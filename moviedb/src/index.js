@@ -9,24 +9,27 @@ import { WatchedMovieContextProvider } from "../src/context/WatchedMovieContext"
 import { LikedMovieContextProvider } from "../src/context/LikedMovieContext";
 import { DislikedMovieContextProvider } from "../src/context/DislikedMovieContext";
 import { ExperienceContextProvider } from "../src/context/ExperienceContext";
+import { LanguageContextProvider } from "./context/LanguageContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <DislikedMovieContextProvider>
-      <LikedMovieContextProvider>
-        <ExperienceContextProvider>
-          <WatchedMovieContextProvider>
-            <PopularMovieContextProvider>
-              <LatestMovieContextProvider>
-                <HomepageContextProvider>
-                  <App />
-                </HomepageContextProvider>
-              </LatestMovieContextProvider>
-            </PopularMovieContextProvider>
-          </WatchedMovieContextProvider>
-        </ExperienceContextProvider>
-      </LikedMovieContextProvider>
-    </DislikedMovieContextProvider>
+    <LanguageContextProvider>
+      <DislikedMovieContextProvider>
+        <LikedMovieContextProvider>
+          <ExperienceContextProvider>
+            <WatchedMovieContextProvider>
+              <PopularMovieContextProvider>
+                <LatestMovieContextProvider>
+                  <HomepageContextProvider>
+                    <App />
+                  </HomepageContextProvider>
+                </LatestMovieContextProvider>
+              </PopularMovieContextProvider>
+            </WatchedMovieContextProvider>
+          </ExperienceContextProvider>
+        </LikedMovieContextProvider>
+      </DislikedMovieContextProvider>
+    </LanguageContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
