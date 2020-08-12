@@ -123,33 +123,48 @@ function DetailedMovie() {
               </div>
 
               <div class="column2">
-                <h1 style={{ color: "darkgray" }}>{movie.title}</h1>
-                <div>
+                <div className="rightSideOfColumn">
+                  <h1 style={{ color: "darkgray" }}>{movie.title}</h1>
+                  {movie.budget !== 0 ? (
+                    <span>
+                      {movie.release_date} / {movie.runtime} min. /{" "}
+                      {movie.budget / 1000000} million $
+                    </span>
+                  ) : (
+                    <span>
+                      {movie.release_date} / {movie.runtime} min. / No info
+                      about budget
+                    </span>
+                  )}
+                  <h2 style={{ color: "black", padding: "1rem" }}>
+                    Description:
+                  </h2>
                   <p>
-                    <span>{movie.release_date} / </span>
-                    <span>{movie.runtime} min. / </span>
-                    {movie.budget !== 0 ? (
-                      <span>{movie.budget / 1000000} million $</span>
-                    ) : (
-                      <span>No info about budget</span>
-                    )}
+                    {movie.overview}
+                    <div className="moreDetails">
+                      <a
+                        href={movie.homepage}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        More details about it
+                      </a>
+                    </div>
                   </p>
-                </div>
-                <p>
-                  {movie.overview}
-                  <br />
-                  <a
-                    href={movie.homepage}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    More details about it
-                  </a>
-                </p>
-                <div>
-                  {movie.credits.cast.slice(0, 5).map((star) => (
-                    <p>{star.name}</p>
-                  ))}
+                  <div className="posters">
+                    {/* <span>{star.name}</span> */}
+                    {movie.credits.cast.slice(0, 5).map((star) => (
+                      <abbr title={star.name}>
+                        <img
+                          src={`https://image.tmdb.org/t/p/original${star.profile_path}`}
+                          alt=""
+                          height="60rem"
+                          width="auto"
+                          border="2rem solid"
+                        />
+                      </abbr>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
