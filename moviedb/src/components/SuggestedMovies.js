@@ -31,7 +31,6 @@ export default function SuggestedMovies() {
       >
         Watch!
       </button>
-
       <button
         style={{ borderRadius: "0.3rem", backgroundColor: "red" }}
         disabled={movieType === "not suggested"}

@@ -129,11 +129,8 @@ function Movie({ movie }) {
       (watchWatched === "watch" && window.location.pathname === "/watchlist") ||
       window.location.pathname !== "/watchlist"
     ) {
-      console.log(watchWatched);
-      console.log("isitwawtch true");
       return true;
     }
-    console.log("fals watch");
     return false;
   }
 
@@ -143,11 +140,8 @@ function Movie({ movie }) {
         window.location.pathname === "/watchlist") ||
       window.location.pathname !== "/watchlist"
     ) {
-      console.log(watchWatched);
-      console.log("isitwawtched true");
       return true;
     }
-    console.log("watched false ág" + watchWatched);
     return false;
   }
 
