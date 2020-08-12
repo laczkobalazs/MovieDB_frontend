@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { RefreshContext } from "../context/RefreshContext";
 import "../style/MovieComponent.scss";
 
 function Movie(props) {
   const [shortenedOverview, setShortenedOverview] = useState("");
+  const [refresh, setRefresh] = useContext(RefreshContext);
 
   useEffect(() => {
     if (props.movie.overview) {
@@ -17,13 +19,13 @@ function Movie(props) {
   const addToLikedMovieList = (e) => {
     axios
       .get(`http://localhost:8080/add/liked-movie/${props.movie.id}`)
-      .then((res) => console.log(res));
+      .then((res) => setRefresh(refresh + 1));
   };
 
   const addToDislikedMovieList = (e) => {
     axios
       .get(`http://localhost:8080/add/disliked-movie/${props.movie.id}`)
-      .then((res) => console.log(res));
+      .then((res) => setRefresh(refresh + 1));
   };
 
   const [deleteUndoButton, setDeleteUndoButton] = useState(
@@ -33,13 +35,13 @@ function Movie(props) {
   const addToWatchList = (e) => {
     axios
       .post(`http://localhost:8080/watchlist/add/${props.movie.id}`)
-      .then((res) => console.log(res));
+      .then((res) => setRefresh(refresh + 1));
   };
 
   const removeFromWatchList = (e) => {
     axios
       .post(`http://localhost:8080/watchlist/delete/${props.movie.id}`)
-      .then((res) => console.log(res));
+      .then((res) => setRefresh(refresh + 1));
   };
 
   const decideEvent = () => {
@@ -60,12 +62,14 @@ function Movie(props) {
   );
 
   const removeFromWatched = (e) => {
-    axios.get(`http://localhost:8080/delete/watched-movie/${props.movie.id}`);
+    axios
+      .get(`http://localhost:8080/delete/watched-movie/${props.movie.id}`)
+      .then((res) => setRefresh(refresh + 1));
   };
 
   const addToWatchedMovies = () => {
     const url = `http://localhost:8080/add/watched-movie/${props.movie.id}`;
-    axios.get(url);
+    axios.get(url).then((res) => setRefresh(refresh + 1));
   };
 
   const decideEventWatched = () => {
@@ -87,6 +91,7 @@ function Movie(props) {
     switch (deleteUndoButton3) {
       case "Seen it!":
         addToWatchedMovies();
+        removeFromWatchList();
         setDeleteUndoButton3("Undo");
         break;
       default:

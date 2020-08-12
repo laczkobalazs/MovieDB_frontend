@@ -1,12 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import MovieList from "./MovieList";
 import { LanguageContext } from "../context/LanguageContext";
+import { RefreshContext } from "../context/RefreshContext";
 import axios from "axios";
 
 export default function Experiences(props) {
   const [language, setLanguage] = useContext(LanguageContext);
   const [movieList, setMovieList] = useState([]);
   const [movieType, setMovieType] = useState("liked");
+  const [refresh, setRefresh] = useContext(RefreshContext);
 
   useEffect(() => {
     if (movieType === "liked") {
@@ -26,7 +28,7 @@ export default function Experiences(props) {
         })
         .catch((err) => console.log(err));
     }
-  }, [language, movieType]);
+  }, [language, movieType, refresh]);
 
   return (
     <div>
