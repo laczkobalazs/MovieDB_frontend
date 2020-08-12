@@ -59,7 +59,7 @@ function Movie({ movie }) {
   };
 
   const [deleteUndoButton2, setDeleteUndoButton2] = useState(
-    "Remove from Watched List"
+    "Remove from watched List"
   );
 
   const removeFromWatched = (e) => {
@@ -81,7 +81,7 @@ function Movie({ movie }) {
         break;
       default:
         addToWatchedMovies();
-        setDeleteUndoButton2("Remove from watch list");
+        setDeleteUndoButton2("Remove from watched list");
         break;
     }
   };
@@ -112,6 +112,7 @@ function Movie({ movie }) {
     switch (deleteUndoButton4) {
       case "Want to see it!":
         addToWatchList();
+        removeFromWatched();
         setDeleteUndoButton4("Undo");
         break;
       default:
