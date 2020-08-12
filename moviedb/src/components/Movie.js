@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import { RefreshContext } from "../context/RefreshContext";
 import "../style/MovieComponent.scss";
 import Rating from "../components/Rating";
+import { WatchWatchedContext } from "../context/WatchWatchedContext";
 
 function Movie({ movie }) {
   const [shortenedOverview, setShortenedOverview] = useState("");
   const [refresh, setRefresh] = useContext(RefreshContext);
+  const [watchWatched, setWatchWatched] = useContext(WatchWatchedContext);
 
   useEffect(() => {
     if (movie.overview) {
@@ -59,7 +61,7 @@ function Movie({ movie }) {
   };
 
   const [deleteUndoButton2, setDeleteUndoButton2] = useState(
-    "Remove from watched List"
+    "Remove from watched list"
   );
 
   const removeFromWatched = (e) => {
@@ -75,7 +77,7 @@ function Movie({ movie }) {
 
   const decideEventWatched = () => {
     switch (deleteUndoButton2) {
-      case "Remove from watched List":
+      case "Remove from watched list":
         removeFromWatched();
         setDeleteUndoButton2("Undo");
         break;
@@ -96,7 +98,7 @@ function Movie({ movie }) {
         setDeleteUndoButton3("Undo");
         break;
       default:
-        removeFromWatchedAddToWatch();
+        removeFromWatched();
         setDeleteUndoButton3("Seen it!");
         break;
     }
@@ -121,6 +123,33 @@ function Movie({ movie }) {
         break;
     }
   };
+
+  function isItWatchList() {
+    if (
+      (watchWatched === "watch" && window.location.pathname === "/watchlist") ||
+      window.location.pathname !== "/watchlist"
+    ) {
+      console.log(watchWatched);
+      console.log("isitwawtch true");
+      return true;
+    }
+    console.log("fals watch");
+    return false;
+  }
+
+  function isItWatchedList() {
+    if (
+      (watchWatched === "watched" &&
+        window.location.pathname === "/watchlist") ||
+      window.location.pathname !== "/watchlist"
+    ) {
+      console.log(watchWatched);
+      console.log("isitwawtched true");
+      return true;
+    }
+    console.log("watched false ág" + watchWatched);
+    return false;
+  }
 
   return (
     <div className="movie-container">
@@ -197,7 +226,7 @@ function Movie({ movie }) {
             </div>
             <div className="mr-grid action-row">
               <div className="col2">
-                {window.location.pathname !== "/watched-list" ? (
+                {isItWatchList() ? (
                   <div className="watch-btn" onClick={decideEventAddToWatched}>
                     <h3>{deleteUndoButton3}</h3>
                   </div>
@@ -206,7 +235,7 @@ function Movie({ movie }) {
                     <h3>{deleteUndoButton2}</h3>
                   </div>
                 )}
-                {window.location.pathname !== "/watchlist" ? (
+                {isItWatchedList() ? (
                   <div
                     className="watch-btn"
                     onClick={decideEventAddToWatchList}

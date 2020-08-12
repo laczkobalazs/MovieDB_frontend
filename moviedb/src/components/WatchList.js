@@ -3,12 +3,14 @@ import axios from "axios";
 import MovieList from "./MovieList";
 import { LanguageContext } from "../context/LanguageContext";
 import { RefreshContext } from "../context/RefreshContext";
+import { WatchWatchedContext } from "../context/WatchWatchedContext";
 
 export default function WatchList() {
   const [watchListMovies, setWatchListMovies] = useState([]);
   const [language, setLanguage] = useContext(LanguageContext);
   const [refresh, setRefresh] = useContext(RefreshContext);
-  const [movieType, setMovieType] = useState("watch");
+  const [watchWatched, setWatchWatched] = useContext(WatchWatchedContext);
+  const [movieType, setMovieType] = useState(watchWatched);
 
   useEffect(() => {
     if (movieType === "watch") {
@@ -34,6 +36,7 @@ export default function WatchList() {
         disabled={movieType === "watch"}
         onClick={() => {
           setMovieType("watch");
+          setWatchWatched("watch");
         }}
       >
         Want to see it
@@ -44,6 +47,7 @@ export default function WatchList() {
         disabled={movieType === "watched"}
         onClick={() => {
           setMovieType("watched");
+          setWatchWatched("watched");
         }}
       >
         Seen it
