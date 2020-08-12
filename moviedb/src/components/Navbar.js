@@ -41,14 +41,10 @@ export default function Navbar() {
           </li>
           <li>
             <Link to={"/watchlist"}>
-              <i class="icon-list"></i>Want to see it
+              <i class="icon-list"></i>Watch list
             </Link>
           </li>
-          <li>
-            <Link to={"/watched-list"}>
-              <i class="icon-picture"></i>Seen it
-            </Link>
-          </li>
+
           <li>
             <Link to={"/suggested"}>
               <i class="icon-plus"></i>Watch!

@@ -28,7 +28,6 @@ function App() {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/watchlist" component={WatchList} />
           <Route exact path="/random-movie" component={RandomMovie} />
-          <Route exact path="/watched-list" component={WatchedMovies} />
           <Route exact path="/movie/:movieId" component={DetailedMovie} />
           <Route exact path="/experiences" component={Experiences} />
           <Route exact path="/suggested" component={SuggestedMovies} />
