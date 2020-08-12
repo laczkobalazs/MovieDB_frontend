@@ -3,18 +3,19 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { RefreshContext } from "../context/RefreshContext";
 import "../style/MovieComponent.scss";
+import Rating from "../components/Rating";
 
-function Movie(props) {
+function Movie({ movie }) {
   const [shortenedOverview, setShortenedOverview] = useState("");
   const [refresh, setRefresh] = useContext(RefreshContext);
 
   useEffect(() => {
-    if (props.movie.overview) {
-      setShortenedOverview(props.movie.overview.slice(0, 200) + "...");
+    if (movie.overview) {
+      setShortenedOverview(movie.overview.slice(0, 200) + "...");
     } else {
       setShortenedOverview("No description.");
     }
-  }, [props.movie.overview]);
+  }, [movie.overview]);
 
   const addToLikedMovieList = (e) => {
     axios
@@ -102,9 +103,7 @@ function Movie(props) {
   };
 
   const removeFromWatchedAddToWatch = (e) => {
-    axios
-      .get(`http://localhost:8080/delete-watched/add-watch/${props.movie.id}`)
-      .then((res) => console.log(res));
+    axios.get(`http://localhost:8080/delete-watched/add-watch/${movie.id}`);
   };
 
   const [deleteUndoButton4, setDeleteUndoButton4] = useState("Want to see it!");
@@ -127,9 +126,9 @@ function Movie(props) {
       <div className="cellphone-container">
         <div className="movie">
           <div className="movie-img">
-            {props.movie.poster_path ? (
+            {movie.poster_path ? (
               <img
-                src={`https://image.tmdb.org/t/p/original${props.movie.poster_path}`}
+                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                 alt=""
                 width="100%"
                 heigth="auto"
@@ -146,17 +145,26 @@ function Movie(props) {
           <div className="text-movie-cont">
             <div className="mr-grid">
               <div className="col1">
-                <Link to={`/movie/${props.movie.id}`}>
-                  {props.movie.title ? (
-                    <h2>{props.movie.title}</h2>
+                <Link to={`/movie/${movie.id}`}>
+                  {movie.title ? (
+                    <h2>{movie.title}</h2>
                   ) : (
-                    <h2>{props.movie.original_title}</h2>
+                    <h2>{movie.original_title}</h2>
                   )}
                 </Link>
+                {window.location.pathname === "/watched-list" ? (
+                  <Rating
+                    id={movie.id}
+                    prevRating={movie.vote_average}
+                    voteCount={movie.vote_count}
+                  />
+                ) : (
+                  <div></div>
+                )}
                 <ul className="movie-gen">
-                  <li>{props.movie.release_date} /</li>
-                  <li>popularity: {props.movie.popularity} /</li>
-                  <li>language: {props.movie.original_language}</li>
+                  <li>{movie.release_date} /</li>
+                  <li>popularity: {movie.popularity} /</li>
+                  <li>language: {movie.original_language}</li>
                 </ul>
               </div>
             </div>

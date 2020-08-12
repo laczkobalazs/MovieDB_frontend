@@ -138,7 +138,11 @@ function DetailedMovie() {
                 <p>
                   {movie.overview}
                   <br />
-                  <a href={movie.homepage} target="_blank">
+                  <a
+                    href={movie.homepage}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     More details about it
                   </a>
                 </p>

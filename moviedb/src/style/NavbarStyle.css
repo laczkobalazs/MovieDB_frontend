@@ -45,7 +45,7 @@ h1 span {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 12;
+  z-index: 16;
 }
 #logo {
   float: left;
