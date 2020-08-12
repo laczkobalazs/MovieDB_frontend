@@ -19,13 +19,13 @@ function Movie({ movie }) {
 
   const addToLikedMovieList = (e) => {
     axios
-      .get(`http://localhost:8080/add/liked-movie/${props.movie.id}`)
+      .get(`http://localhost:8080/add/liked-movie/${movie.id}`)
       .then((res) => setRefresh(refresh + 1));
   };
 
   const addToDislikedMovieList = (e) => {
     axios
-      .get(`http://localhost:8080/add/disliked-movie/${props.movie.id}`)
+      .get(`http://localhost:8080/add/disliked-movie/${movie.id}`)
       .then((res) => setRefresh(refresh + 1));
   };
 
@@ -35,13 +35,13 @@ function Movie({ movie }) {
 
   const addToWatchList = (e) => {
     axios
-      .post(`http://localhost:8080/watchlist/add/${props.movie.id}`)
+      .post(`http://localhost:8080/watchlist/add/${movie.id}`)
       .then((res) => setRefresh(refresh + 1));
   };
 
   const removeFromWatchList = (e) => {
     axios
-      .post(`http://localhost:8080/watchlist/delete/${props.movie.id}`)
+      .post(`http://localhost:8080/watchlist/delete/${movie.id}`)
       .then((res) => setRefresh(refresh + 1));
   };
 
@@ -64,12 +64,12 @@ function Movie({ movie }) {
 
   const removeFromWatched = (e) => {
     axios
-      .get(`http://localhost:8080/delete/watched-movie/${props.movie.id}`)
+      .get(`http://localhost:8080/delete/watched-movie/${movie.id}`)
       .then((res) => setRefresh(refresh + 1));
   };
 
   const addToWatchedMovies = () => {
-    const url = `http://localhost:8080/add/watched-movie/${props.movie.id}`;
+    const url = `http://localhost:8080/add/watched-movie/${movie.id}`;
     axios.get(url).then((res) => setRefresh(refresh + 1));
   };
 
