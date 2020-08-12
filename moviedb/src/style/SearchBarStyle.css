@@ -47,13 +47,24 @@ input::-webkit-input-placeholder {
 }
 
 .search-button {
-  background-color: #ccc;
+  cursor: pointer;
+  background-color: darkgrey;
   border: none;
-  color: rgba(109, 207, 246, 0.5);
+  color: black;
   padding: 15px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   border-radius: 50%;
+}
+
+.search-button:hover {
+  cursor: zoom-in;
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  background-color: #fe4141;
+  color: #002e5b;
+  text-decoration: underline;
 }

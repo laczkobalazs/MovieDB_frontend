@@ -30,7 +30,7 @@ a:hover {
 .container {
   margin: 0 auto;
   width: 60rem;
-  height: 50rem;
+  height: 60rem;
   background: #f0f0ed;
   border-radius: 5px;
   position: relative;
@@ -65,8 +65,8 @@ a:hover {
 
 .cover {
   position: absolute;
-  top: 18.75rem;
-  left: 2.5rem;
+  top: 17rem;
+  left: 1rem;
   z-index: 2;
 }
 
@@ -126,7 +126,7 @@ body {
   border-radius: 100%;
   position: absolute;
   top: 30rem;
-  left: 9.375rem;
+  left: 8.5rem;
   z-index: 15;
   text-indent: -9999px;
   box-shadow: 1px 1px 3px #999999;
@@ -164,4 +164,29 @@ body {
   position: absolute;
   top: 2%;
   right: 2%;
+}
+
+.rightSideOfColumn {
+  position: absolute;
+  top: 20rem;
+  left: 23rem;
+  width: 35rem;
+}
+
+.moreDetails {
+  padding: 1rem;
+}
+
+.posters {
+  position: absolute;
+  left: 7rem;
+  display: flex;
+  justify-content: space-evenly;
+  width: 20rem;
+}
+
+.starImg {
+  height: 60rem;
+  width: auto;
+  border: 1rem solid red;
 }
