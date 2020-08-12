@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router";
 import MovieList from "./MovieList";
 import { LanguageContext } from "../context/LanguageContext";
+import "../style/SearchResult.css";
 
 function SearchResult(props) {
   const [results, setResults] = useState([]);
@@ -38,20 +39,22 @@ function SearchResult(props) {
       <p>
         Pages: {pageNumber}/{maxPageNumber}
       </p>
-      <button
-        style={{ borderRadius: "0.3rem" }}
-        onClick={decreasePageNumber}
-        disabled={pageNumber === 1}
-      >
-        Previous page
-      </button>
-      <button
-        style={{ borderRadius: "0.3rem" }}
-        onClick={increasePageNumber}
-        disabled={pageNumber >= maxPageNumber}
-      >
-        Next page
-      </button>
+      <div className="buttonsArea">
+        <button
+          className="prev"
+          onClick={decreasePageNumber}
+          disabled={pageNumber === 1}
+        >
+          Prev
+        </button>
+        <button
+          className="next"
+          onClick={increasePageNumber}
+          disabled={pageNumber >= maxPageNumber}
+        >
+          Next
+        </button>
+      </div>
 
       <MovieList movies={results} />
     </div>

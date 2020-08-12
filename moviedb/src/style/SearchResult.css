@@ -1,0 +1,50 @@
+.prev {
+  cursor: pointer;
+  background-color: grey;
+  border: none;
+  color: black;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10%;
+  border-top-left-radius: 50%;
+}
+
+.next {
+  cursor: pointer;
+  background-color: grey;
+  border: none;
+  color: black;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10%;
+  border-top-right-radius: 50%;
+}
+
+.prev:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  background-color: #fe4141;
+  color: #002e5b;
+  text-decoration: underline;
+}
+
+.next:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  background-color: #fe4141;
+  color: #002e5b;
+  text-decoration: underline;
+}
+
+.buttonsArea {
+  display: flex;
+  justify-content: space-evenly;
+}

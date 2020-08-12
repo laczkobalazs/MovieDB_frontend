@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import MovieList from "./MovieList";
 import { LanguageContext } from "../context/LanguageContext";
 import axios from "axios";
+import "../style/MyCollection.css";
 
 export default function Experiences(props) {
   const [language, setLanguage] = useContext(LanguageContext);
@@ -30,25 +31,27 @@ export default function Experiences(props) {
 
   return (
     <div>
-      <button
-        style={{ borderRadius: "0.3rem", backgroundColor: "green" }}
-        disabled={movieType === "liked"}
-        onClick={() => {
-          setMovieType("liked");
-        }}
-      >
-        Liked Movies
-      </button>
+      <div className="buttonsArea">
+        <button
+          className="like"
+          disabled={movieType === "liked"}
+          onClick={() => {
+            setMovieType("liked");
+          }}
+        >
+          Liked Movies
+        </button>
 
-      <button
-        style={{ borderRadius: "0.3rem", backgroundColor: "red" }}
-        disabled={movieType === "disliked"}
-        onClick={() => {
-          setMovieType("disliked");
-        }}
-      >
-        Disliked Movies
-      </button>
+        <button
+          className="dislike"
+          disabled={movieType === "disliked"}
+          onClick={() => {
+            setMovieType("disliked");
+          }}
+        >
+          Disliked Movies
+        </button>
+      </div>
 
       <MovieList movies={movieList} />
     </div>
