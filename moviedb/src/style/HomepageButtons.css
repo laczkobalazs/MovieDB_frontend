@@ -56,6 +56,14 @@
   text-decoration: none;
 }
 
+.popular:disabled {
+  background-color: #fe4141;
+}
+
+.theatre:disabled {
+  background-color: #fe4141;
+}
+
 .buttonsArea {
   display: flex;
   justify-content: space-evenly;

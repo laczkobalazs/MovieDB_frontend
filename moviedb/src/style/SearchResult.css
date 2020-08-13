@@ -28,7 +28,7 @@
   margin: 1rem;
 }
 
-.prev:hover {
+.prev:hover:not(:disabled) {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
@@ -37,7 +37,7 @@
   text-decoration: underline;
 }
 
-.next:hover {
+.next:hover:not(:disabled) {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
@@ -49,4 +49,20 @@
 .buttonsArea {
   display: flex;
   justify-content: space-evenly;
+}
+
+.next:disabled {
+  background-color: #fe4141;
+}
+
+.prev:disabled {
+  background-color: #fe4141;
+}
+
+.next:disabled:hover {
+  cursor: not-allowed;
+}
+
+.prev:disabled:hover {
+  cursor: not-allowed;
 }

@@ -56,6 +56,14 @@
   text-decoration: underline;
 }
 
+.watched:disabled {
+  background-color: #fe4141;
+}
+
+.watch:disabled {
+  background-color: #fe4141;
+}
+
 .buttonsArea {
   display: flex;
   justify-content: space-evenly;
