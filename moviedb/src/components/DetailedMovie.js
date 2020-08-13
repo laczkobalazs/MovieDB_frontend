@@ -120,6 +120,11 @@ function DetailedMovie() {
                   width="auto"
                   height="55%"
                 />
+                <div className="genres">
+                  {movie.genres.slice(0, 6).map((genre) => (
+                    <div>{genre.name}</div>
+                  ))}
+                </div>
               </div>
 
               <div class="column2">
