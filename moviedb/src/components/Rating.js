@@ -1,32 +1,45 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import StarRatings from "react-star-ratings";
+import "../style/MovieComponent.scss";
 
 function Rating({ id, prevRating, voteCount }) {
   const [rating, setRating] = useState(prevRating);
+  const [starRating, setStarRating] = useState(0);
 
-  const sendRating = () => {
-    Axios.post(`http://localhost:8080/rate-movie/${id}/${rating}`);
-  };
+  function sendRating(newRating) {
+    Axios.post(
+      `http://localhost:8080/rate-movie/${id}/${newRating}`
+    ).then((res) => console.log("élek"));
+  }
 
-  const changeRating = (event) => {
-    setRating(event.target.value);
-  };
+  function changeRating(newRating, name) {
+    setRating(newRating);
+    sendRating(newRating);
+    setStarRating(newRating);
+  }
 
   return (
     <div>
-      <input
-        onChange={changeRating}
-        type="number"
-        id="quantity"
-        name="quantity"
-        min="1"
-        max="10"
-        step="0.5"
-      ></input>
-      <button onClick={sendRating}>Rate!</button>
-      <p>
-        {prevRating} {voteCount}
+      <p className="movie-description">
+        <StarRatings
+          rating={1}
+          numberOfStars={1}
+          starRatedColor="yellow"
+          starDimension="17px"
+          starSpacing="8px"
+        />
+        {prevRating} from {voteCount} votes
       </p>
+      <StarRatings
+        rating={starRating}
+        numberOfStars={10}
+        changeRating={changeRating}
+        starRatedColor="yellow"
+        starHoverColor="yellow"
+        starDimension="20px"
+        starSpacing="2px"
+      />
     </div>
   );
 }

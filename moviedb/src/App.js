@@ -6,11 +6,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import SearchResult from "./components/SearchResult";
 import RandomMovie from "./components/RandomMovie";
 import WatchList from "./components/WatchList";
-import WatchedMovies from "./components/WatchedMovies";
 import DetailedMovie from "./components/DetailedMovie";
 import Experiences from "./components/ExperienceMovies";
 import SuggestedMovies from "./components/SuggestedMovies";
-import NotSuggestedMovies from "./components/NotSuggestedMovies";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -31,7 +29,6 @@ function App() {
           <Route exact path="/movie/:movieId" component={DetailedMovie} />
           <Route exact path="/experiences" component={Experiences} />
           <Route exact path="/suggested" component={SuggestedMovies} />
-          <Route exact path="/not-suggested" component={NotSuggestedMovies} />
         </Router>
       </header>
     </div>

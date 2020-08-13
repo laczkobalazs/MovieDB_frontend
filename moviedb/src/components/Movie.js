@@ -178,7 +178,8 @@ function Movie({ movie }) {
                     <h2>{movie.original_title}</h2>
                   )}
                 </Link>
-                {window.location.pathname === "/watched-list" ? (
+                {window.location.pathname === "/watchlist" &&
+                watchWatched === "watched" ? (
                   <Rating
                     id={movie.id}
                     prevRating={movie.vote_average}

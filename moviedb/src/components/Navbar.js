@@ -61,7 +61,7 @@ export default function Navbar() {
           </li>
           <li>
             <Link to={"/watchlist"}>
-              <i class="icon-list"></i>My Collection
+              <i class="icon-list"></i>Watch List
             </Link>
           </li>
           <li>
