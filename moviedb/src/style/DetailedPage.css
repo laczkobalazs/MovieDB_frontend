@@ -191,13 +191,6 @@ body {
   border: 1rem solid red;
 }
 
-/* .genres {
-  display: flex;
-  position: absolute;
-  top: 52rem;
-  justify-content: space-evenly;
-} */
-
 .genres {
   position: absolute;
   top: 51rem;
