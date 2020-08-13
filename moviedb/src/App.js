@@ -10,6 +10,7 @@ import DetailedMovie from "./components/DetailedMovie";
 import Experiences from "./components/ExperienceMovies";
 import SuggestedMovies from "./components/SuggestedMovies";
 import Navbar from "./components/Navbar";
+import GenreSearchResult from "./components/GenreSearchResult";
 
 function App() {
   return (
@@ -23,6 +24,12 @@ function App() {
             path="/search-result/:searchString"
             component={SearchResult}
           />
+          <Route
+            exact
+            path="/search-result/genre/:genreId"
+            component={GenreSearchResult}
+          />
+
           <Route exact path="/" component={HomePage} />
           <Route exact path="/watchlist" component={WatchList} />
           <Route exact path="/random-movie" component={RandomMovie} />

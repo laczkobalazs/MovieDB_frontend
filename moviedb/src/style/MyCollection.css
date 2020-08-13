@@ -42,9 +42,17 @@
   text-decoration: none;
 }
 
+.like:disabled {
+  background-color: green;
+}
+
 .dislike:disabled:hover {
   cursor: not-allowed;
   text-decoration: none;
+}
+
+.dislike:disabled {
+  background-color: red;
 }
 
 .dislike:hover:not(:disabled) {

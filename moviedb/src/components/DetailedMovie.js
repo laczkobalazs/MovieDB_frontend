@@ -23,7 +23,6 @@ function DetailedMovie() {
   const [modalStyle] = useState(getModalStyle);
 
   const [language, setLanguage] = useContext(LanguageContext);
-  console.log(language);
   useEffect(() => {
     Axios.get(`http://localhost:8080/movie/${movieId}/${language}`).then(
       (res) => {
@@ -64,6 +63,10 @@ function DetailedMovie() {
       transform: `translate(-${top}%, -${left}%)`,
     };
   }
+
+  const sendGenreId = (genreId) => {
+    window.location.replace(`/search-result/genre/${genreId}`);
+  };
 
   return (
     <div>
@@ -122,7 +125,9 @@ function DetailedMovie() {
                 />
                 <div className="genres">
                   {movie.genres.slice(0, 6).map((genre) => (
-                    <div>{genre.name}</div>
+                    <div onClick={() => sendGenreId(genre.id)}>
+                      {genre.name}
+                    </div>
                   ))}
                 </div>
               </div>
