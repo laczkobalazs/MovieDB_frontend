@@ -149,23 +149,25 @@ function Movie({ movie }) {
     <div className="movie-container">
       <div className="cellphone-container">
         <div className="movie">
-          <div className="movie-img">
-            {movie.poster_path ? (
-              <img
-                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                alt=""
-                width="100%"
-                heigth="auto"
-              />
-            ) : (
-              <img
-                src={`https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101065/112815953-stock-vector-no-image-available-icon-flat-vector.jpg?ver=6`}
-                alt=""
-                width="100%"
-                heigth="auto"
-              />
-            )}
-          </div>
+          <Link to={`/movie/${movie.id}`}>
+            <div className="movie-img">
+              {movie.poster_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                  alt=""
+                  width="100%"
+                  heigth="auto"
+                />
+              ) : (
+                <img
+                  src={`https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101065/112815953-stock-vector-no-image-available-icon-flat-vector.jpg?ver=6`}
+                  alt=""
+                  width="100%"
+                  heigth="auto"
+                />
+              )}
+            </div>
+          </Link>
           <div className="text-movie-cont">
             <div className="mr-grid">
               <div className="col1">

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import MovieList from "./MovieList";
 import { LanguageContext } from "../context/LanguageContext";
+import "../style/MyCollection.css";
 
 export default function SuggestedMovies() {
   const [suggestedMovies, setSuggestedMovies] = useState([]);
@@ -22,25 +23,27 @@ export default function SuggestedMovies() {
 
   return (
     <div>
-      <button
-        style={{ borderRadius: "0.3rem", backgroundColor: "green" }}
-        disabled={movieType === "suggested"}
-        onClick={() => {
-          setMovieType("suggested");
-        }}
-      >
-        Watch!
-      </button>
-      <button
-        style={{ borderRadius: "0.3rem", backgroundColor: "red" }}
-        disabled={movieType === "not suggested"}
-        onClick={() => {
-          setMovieType("not suggested");
-        }}
-      >
-        Don't watch!
-      </button>
+      <div className="buttonsArea">
+        <button
+          className="like"
+          disabled={movieType === "suggested"}
+          onClick={() => {
+            setMovieType("suggested");
+          }}
+        >
+          Suggested
+        </button>
 
+        <button
+          className="dislike"
+          disabled={movieType === "not suggested"}
+          onClick={() => {
+            setMovieType("not suggested");
+          }}
+        >
+          Not-Suggested
+        </button>
+      </div>
       <MovieList movies={suggestedMovies} />
     </div>
   );

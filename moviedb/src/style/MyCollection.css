@@ -10,6 +10,7 @@
   font-size: 16px;
   border-radius: 10%;
   border-top-left-radius: 50%;
+  margin: 1rem;
 }
 
 .dislike {
@@ -24,6 +25,7 @@
   font-size: 16px;
   border-radius: 10%;
   border-top-right-radius: 50%;
+  margin: 1rem;
 }
 
 .like:hover:not(:disabled) {
