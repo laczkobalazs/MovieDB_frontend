@@ -1,4 +1,4 @@
-.prev {
+.watch {
   cursor: pointer;
   background-color: grey;
   border: none;
@@ -13,7 +13,7 @@
   margin: 1rem;
 }
 
-.next {
+.watched {
   cursor: pointer;
   background-color: grey;
   border: none;
@@ -28,7 +28,7 @@
   margin: 1rem;
 }
 
-.prev:hover {
+.watch:hover:not(:disabled) {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
@@ -37,7 +37,17 @@
   text-decoration: underline;
 }
 
-.next:hover {
+.watch:disabled:hover {
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+.watched:disabled:hover {
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+.watched:hover:not(:disabled) {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);

@@ -4,6 +4,7 @@ import MovieList from "./MovieList";
 import { LanguageContext } from "../context/LanguageContext";
 import { RefreshContext } from "../context/RefreshContext";
 import { WatchWatchedContext } from "../context/WatchWatchedContext";
+import "../style/WatchListButtons.css";
 
 export default function WatchList() {
   const [watchListMovies, setWatchListMovies] = useState([]);
@@ -31,27 +32,28 @@ export default function WatchList() {
 
   return (
     <div>
-      <button
-        style={{ borderRadius: "0.3rem", backgroundColor: "green" }}
-        disabled={movieType === "watch"}
-        onClick={() => {
-          setMovieType("watch");
-          setWatchWatched("watch");
-        }}
-      >
-        Want to see it
-      </button>
-
-      <button
-        style={{ borderRadius: "0.3rem", backgroundColor: "red" }}
-        disabled={movieType === "watched"}
-        onClick={() => {
-          setMovieType("watched");
-          setWatchWatched("watched");
-        }}
-      >
-        Seen it
-      </button>
+      <div className="buttonsArea">
+        <button
+          className="watch"
+          disabled={movieType === "watch"}
+          onClick={() => {
+            setMovieType("watch");
+            setWatchWatched("watch");
+          }}
+        >
+          Want To See It
+        </button>
+        <button
+          className="watched"
+          disabled={movieType === "watched"}
+          onClick={() => {
+            setMovieType("watched");
+            setWatchWatched("watched");
+          }}
+        >
+          Already Seen It
+        </button>
+      </div>
       <MovieList movies={watchListMovies} />
     </div>
   );

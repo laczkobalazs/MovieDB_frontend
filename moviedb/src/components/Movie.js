@@ -148,106 +148,109 @@ function Movie({ movie }) {
   return (
     <div className="movie-container">
       <div className="cellphone-container">
-        <div className="movie">
-          <div className="movie-img">
-            {movie.poster_path ? (
-              <img
-                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                alt=""
-                width="100%"
-                heigth="auto"
-              />
-            ) : (
-              <img
-                src={`https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101065/112815953-stock-vector-no-image-available-icon-flat-vector.jpg?ver=6`}
-                alt=""
-                width="100%"
-                heigth="auto"
-              />
-            )}
-          </div>
-          <div className="text-movie-cont">
-            <div className="mr-grid">
-              <div className="col1">
-                <Link to={`/movie/${movie.id}`}>
+        <Link to={`/movie/${movie.id}`}>
+          <div className="movie">
+            <div className="movie-img">
+              {movie.poster_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                  alt=""
+                  width="100%"
+                  heigth="auto"
+                />
+              ) : (
+                <img
+                  src={`https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101065/112815953-stock-vector-no-image-available-icon-flat-vector.jpg?ver=6`}
+                  alt=""
+                  width="100%"
+                  heigth="auto"
+                />
+              )}
+            </div>
+            <div className="text-movie-cont">
+              <div className="mr-grid">
+                <div className="col1">
                   {movie.title ? (
                     <h2>{movie.title}</h2>
                   ) : (
                     <h2>{movie.original_title}</h2>
                   )}
-                </Link>
-                {window.location.pathname === "/watched-list" ? (
-                  <Rating
-                    id={movie.id}
-                    prevRating={movie.vote_average}
-                    voteCount={movie.vote_count}
-                  />
-                ) : (
-                  <div></div>
-                )}
-                <ul className="movie-gen">
-                  <li>{movie.release_date} /</li>
-                  <li>popularity: {movie.popularity} /</li>
-                  <li>language: {movie.original_language}</li>
-                </ul>
+                  {window.location.pathname === "/watched-list" ? (
+                    <Rating
+                      id={movie.id}
+                      prevRating={movie.vote_average}
+                      voteCount={movie.vote_count}
+                    />
+                  ) : (
+                    <div></div>
+                  )}
+                  <ul className="movie-gen">
+                    <li>{movie.release_date} /</li>
+                    <li>popularity: {movie.popularity} /</li>
+                    <li>language: {movie.original_language}</li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div className="mr-grid summary-row">
-              <div className="col2">
-                <h5>SUMMARY</h5>
+              <div className="mr-grid summary-row">
+                <div className="col2">
+                  <h5>SUMMARY</h5>
+                </div>
+                <img
+                  className="likeDislike"
+                  onClick={addToLikedMovieList}
+                  src={
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png"
+                  }
+                  alt=""
+                />
+                <img
+                  className="likeDislike"
+                  onClick={addToDislikedMovieList}
+                  src={
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Broken_heart.svg/586px-Broken_heart.svg.png"
+                  }
+                  alt=""
+                />
               </div>
-              <img
-                className="likeDislike"
-                onClick={addToLikedMovieList}
-                src={
-                  "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png"
-                }
-                alt=""
-              />
-              <img
-                className="likeDislike"
-                onClick={addToDislikedMovieList}
-                src={
-                  "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Broken_heart.svg/586px-Broken_heart.svg.png"
-                }
-                alt=""
-              />
-            </div>
-            <div className="mr-grid">
-              <div className="col1">
-                <p className="movie-description">{shortenedOverview}</p>
+              <div className="mr-grid">
+                <div className="col1">
+                  <p className="movie-description">{shortenedOverview}</p>
+                </div>
               </div>
-            </div>
-            <div className="mr-grid action-row">
-              <div className="col2">
-                {isItWatchList() ? (
-                  <div className="watch-btn" onClick={decideEventAddToWatched}>
-                    <h3>{deleteUndoButton3}</h3>
-                  </div>
-                ) : (
-                  <div className="watch-btn" onClick={decideEventWatched}>
-                    <h3>{deleteUndoButton2}</h3>
-                  </div>
-                )}
-                {isItWatchedList() ? (
-                  <div
-                    className="watch-btn"
-                    onClick={decideEventAddToWatchList}
-                  >
-                    <h3>{deleteUndoButton4}</h3>
-                  </div>
-                ) : (
-                  <div className="watch-btn" onClick={decideEvent}>
-                    <h3>{deleteUndoButton}</h3>
-                  </div>
-                )}
+              <div className="mr-grid action-row">
+                <div className="col2">
+                  {isItWatchList() ? (
+                    <div
+                      className="watch-btn"
+                      onClick={decideEventAddToWatched}
+                    >
+                      <h3>{deleteUndoButton3}</h3>
+                    </div>
+                  ) : (
+                    <div className="watch-btn" onClick={decideEventWatched}>
+                      <h3>{deleteUndoButton2}</h3>
+                    </div>
+                  )}
+                  {isItWatchedList() ? (
+                    <div
+                      className="watch-btn"
+                      onClick={decideEventAddToWatchList}
+                    >
+                      <h3>{deleteUndoButton4}</h3>
+                    </div>
+                  ) : (
+                    <div className="watch-btn" onClick={decideEvent}>
+                      <h3>{deleteUndoButton}</h3>
+                    </div>
+                  )}
+                </div>
+                <div className="col6 action-btn"></div>
+                <div className="col6 action-btn"></div>
+                <div className="col6 action-btn"></div>
               </div>
-              <div className="col6 action-btn"></div>
-              <div className="col6 action-btn"></div>
-              <div className="col6 action-btn"></div>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );
