@@ -3,33 +3,53 @@ import "../style/NavbarStyle.css";
 import { LanguageContext } from "../context/LanguageContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import FlagIcon from "./FlagIcon.js";
 
 export default function Navbar() {
   const [language, setLanguage] = useContext(LanguageContext);
+
+  function isDisabled(buttonLanguage) {
+    if (buttonLanguage === language) {
+      return true;
+    }
+    return false;
+  }
+
   return (
     <div className="header">
       <Link to={"/"} id="logo" target="_blank">
         The Movie Database
       </Link>
-      <button
-        onClick={() => {
-          switch (language) {
-            case "en":
-              setLanguage("hu");
-              break;
-            case "hu":
-              setLanguage("en");
-              break;
-            default:
-              setLanguage("en");
-          }
-        }}
-      >
-        {language === "hu" ? "English" : "Magyar"}
-      </button>
+
       <nav>
         <ul>
-          <li>
+          <div class="language-button">
+            <div
+              style={{
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setLanguage("en");
+              }}
+              disabled={isDisabled("en")}
+            >
+              <FlagIcon code="gb" />
+            </div>
+          </div>
+          <div class="language-button">
+            <div
+              style={{
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setLanguage("hu");
+              }}
+              disabled={isDisabled("hu")}
+            >
+              <FlagIcon code="hu" />
+            </div>
+          </div>
+          <li class="menu-item">
             <Link to={"/"}>
               <i class="icon-home"></i>Home
             </Link>

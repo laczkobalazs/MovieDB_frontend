@@ -67,23 +67,48 @@ nav ul li {
 nav ul li:last-child {
   padding-right: 0px;
 }
-nav ul li a {
+nav ul li {
   color: #002e5b;
   font-size: 1rem;
   padding: 25px 20px;
   display: inline-block;
   transition: all 0.5s ease 0s;
 }
-nav ul li a:hover {
+
+.language-button {
+  color: #002e5b;
+  font-size: 1rem;
+  padding: 25px 2px;
+  display: inline-block;
+  transition: all 0.5s ease 0s;
+  float: left;
+}
+
+a {
+  color: #002e5b;
+}
+
+a:hover {
+  color: #fe4141;
+  transition: all 0.5s ease 0s;
+}
+
+nav ul li:hover {
   background-color: #002e5b;
   color: #fe4141;
   transition: all 0.5s ease 0s;
 }
-nav ul li a:hover i {
+
+nav ul li:hover i {
   color: #fe4141;
   transition: all 0.5s ease 0s;
 }
-nav ul li a i {
+
+nav ul li:hover a {
+  color: #fe4141;
+  transition: all 0.5s ease 0s;
+}
+nav ul li i {
   padding-right: 10px;
   color: #002e5b;
   transition: all 0.5s ease 0s;
@@ -142,11 +167,11 @@ footer {
   float: left;
   padding: 0px 10px;
 }
-.social li a {
+.social li {
   color: #002e5b;
   transition: all 0.5s ease 0s;
 }
-.social li a:hover {
+.social li:hover {
   color: #fde428;
   transition: all 0.5s ease 0s;
 }
@@ -201,14 +226,14 @@ footer {
     width: 100%;
     display: table;
   }
-  nav ul li a {
+  nav ul li {
     color: #fff;
     font-size: 15px;
     padding: 10px 20px;
     display: block;
     border-bottom: 1px solid rgba(225, 225, 225, 0.1);
   }
-  nav ul li a i {
+  nav ul li i {
     color: #fde428;
     padding-right: 13px;
   }
