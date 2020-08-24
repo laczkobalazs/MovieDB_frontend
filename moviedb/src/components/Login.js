@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Axios } from "axios";
+import Axios from "axios";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const sendUserLoginData = () => {
+    console.log(username + " " + password);
     Axios.post("http://localhost:8080/auth/sign-in", {
       username: username,
       password: password,
