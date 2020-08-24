@@ -74,6 +74,9 @@ export default function Navbar() {
               <i class="icon-question"></i>Random
             </Link>
           </li>
+          <li>
+            <Link to={"/login-register"}>Login|Register</Link>
+          </li>
         </ul>
       </nav>
     </div>

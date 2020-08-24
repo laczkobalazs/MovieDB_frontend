@@ -11,6 +11,7 @@ import Experiences from "./components/ExperienceMovies";
 import SuggestedMovies from "./components/SuggestedMovies";
 import Navbar from "./components/Navbar";
 import GenreSearchResult from "./components/GenreSearchResult";
+import LoginOrRegister from "./components/LoginOrRegister";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route exact path="/movie/:movieId" component={DetailedMovie} />
           <Route exact path="/experiences" component={Experiences} />
           <Route exact path="/suggested" component={SuggestedMovies} />
+          <Route exact path="/login-register" component={LoginOrRegister} />
         </Router>
       </header>
     </div>
