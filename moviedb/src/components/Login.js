@@ -6,7 +6,7 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const sendUserLoginData = () => {
-    Axios.post("/auth/login", {
+    Axios.post("http://localhost:8080/auth/sign-in", {
       username: username,
       password: password,
     }).then((data) => {

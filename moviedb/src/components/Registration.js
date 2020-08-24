@@ -11,7 +11,7 @@ function Registration() {
     if (firstPassword !== secondPassword) {
       alert("Passwords are not equal!");
     } else {
-      Axios.post("/auth/registration", {
+      Axios.post("http://localhost:8080/auth/registration", {
         username: userName,
         email: email,
         password: firstPassword,
