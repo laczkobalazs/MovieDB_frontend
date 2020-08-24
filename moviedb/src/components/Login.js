@@ -5,11 +5,20 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const headers = {
+    "Content-type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+  };
+
   const sendUserLoginData = () => {
     console.log(username + " " + password);
     Axios.post("http://localhost:8080/auth/sign-in", {
+      mode: "no-cors",
+      headers: headers,
       username: username,
       password: password,
+      // withCredentials: true,
+      // credentials: "same-origin",
     }).then((data) => {
       console.log(data.data);
       document.cookie(`Authorization=Bearer ${data.data.token}`);
