@@ -7,6 +7,7 @@ import { LanguageContext } from "../context/LanguageContext";
 import Modal from "@material-ui/core/Modal";
 import { makeStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
+import Chat from "./Chat";
 
 const Warning = styled.h1`
   position: absolute;
@@ -21,6 +22,8 @@ function DetailedMovie() {
   const [videoURL, setVideoURL] = useState("");
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
+  const [userSignedIn, setUserSignedIn] = useState(false);
+  const cookieValue = document.cookie.split("=")[1];
 
   const [language, setLanguage] = useContext(LanguageContext);
   useEffect(() => {
@@ -38,6 +41,18 @@ function DetailedMovie() {
       }
     });
   }, [movieId]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:8080/auth-checker", {
+      withCredentials: true,
+      headers: { Authorization: cookieValue },
+    }).then((res) => {
+      if (res.data) {
+        console.log("visszajött");
+        setUserSignedIn(true);
+      }
+    });
+  }, [cookieValue]);
 
   const useStyles = makeStyles((theme) => ({
     paper: {
@@ -181,6 +196,7 @@ function DetailedMovie() {
           </div>
         </div>
       ))}
+      {userSignedIn ? <Chat /> : <div></div>}
     </div>
   );
 }

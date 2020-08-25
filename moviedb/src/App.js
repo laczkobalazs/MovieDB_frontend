@@ -39,7 +39,6 @@ function App() {
           <Route exact path="/experiences" component={Experiences} />
           <Route exact path="/suggested" component={SuggestedMovies} />
           <Route exact path="/login-register" component={LoginOrRegister} />
-          <Route exact path="/chat" component={Chat} />
         </Router>
       </header>
     </div>

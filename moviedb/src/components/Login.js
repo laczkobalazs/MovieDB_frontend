@@ -10,8 +10,9 @@ function Login() {
       username: username,
       password: password,
     }).then((data) => {
-      document.cookie = `Username=${username}`;
       document.cookie = `Authorization=${data.data.token}`;
+      localStorage.clear();
+      window.localStorage.setItem("username", username);
     });
   };
 

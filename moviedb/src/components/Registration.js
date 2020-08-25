@@ -16,8 +16,9 @@ function Registration() {
         email: email,
         password: firstPassword,
       }).then((data) => {
-        document.cookie = `Username=${userName}`;
         document.cookie = `Authorization=${data.data.token}`;
+        localStorage.clear();
+        window.localStorage.setItem("username", userName);
       });
     }
   };

@@ -9,7 +9,7 @@ class Chat extends Component {
     this.state = {
       messages: [],
       typedMessage: "",
-      name: "",
+      name: localStorage.getItem("username"),
     };
   }
 
@@ -22,6 +22,7 @@ class Chat extends Component {
     this.clientRef.sendMessage(
       "/app/user-all",
       JSON.stringify({
+        headers: { Authorization: document.cookie.split("=")[1] },
         name: this.state.name,
         message: this.state.typedMessage,
       })
