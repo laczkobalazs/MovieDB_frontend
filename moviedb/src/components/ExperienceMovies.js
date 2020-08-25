@@ -15,7 +15,10 @@ export default function Experiences(props) {
     if (movieType === "liked") {
       const likedURL = `http://localhost:8080/all-liked-movies/${language}`;
       axios
-        .get(likedURL)
+        .get(likedURL, {
+          withCredentials: true,
+          headers: { Authorization: `Bearer ${document.cookie}` },
+        })
         .then((res) => {
           setMovieList(res.data);
         })
@@ -23,7 +26,10 @@ export default function Experiences(props) {
     } else {
       const dislikedURL = `http://localhost:8080/all-disliked-movies/${language}`;
       axios
-        .get(dislikedURL)
+        .get(dislikedURL, {
+          withCredentials: true,
+          headers: { Authorization: `Bearer ${document.cookie}` },
+        })
         .then((res) => {
           setMovieList(res.data);
         })

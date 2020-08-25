@@ -21,13 +21,19 @@ function Movie({ movie }) {
 
   const addToLikedMovieList = (e) => {
     axios
-      .get(`http://localhost:8080/add/liked-movie/${movie.id}`)
+      .get(`http://localhost:8080/add/liked-movie/${movie.id}`, {
+        withCredentials: true,
+        headers: { Authorization: `Bearer ${document.cookie}` },
+      })
       .then((res) => setRefresh(refresh + 1));
   };
 
   const addToDislikedMovieList = (e) => {
     axios
-      .get(`http://localhost:8080/add/disliked-movie/${movie.id}`)
+      .get(`http://localhost:8080/add/disliked-movie/${movie.id}`, {
+        withCredentials: true,
+        headers: { Authorization: `Bearer ${document.cookie}` },
+      })
       .then((res) => setRefresh(refresh + 1));
   };
 
