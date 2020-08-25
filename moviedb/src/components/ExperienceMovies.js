@@ -10,9 +10,7 @@ export default function Experiences(props) {
   const [movieList, setMovieList] = useState([]);
   const [movieType, setMovieType] = useState("liked");
   const [refresh, setRefresh] = useContext(RefreshContext);
-  const cookieValue = document.cookie
-    .split("=")
-    .find((row) => row.startsWith("Bearer "));
+  const cookieValue = document.cookie.split("=")[1];
 
   useEffect(() => {
     if (movieType === "liked") {

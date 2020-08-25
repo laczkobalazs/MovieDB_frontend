@@ -10,7 +10,7 @@ function Login() {
       username: username,
       password: password,
     }).then((data) => {
-      document.cookie = `Authorization=Bearer ${data.data.token}`;
+      document.cookie = `Authorization=${data.data.token}`;
     });
   };
 

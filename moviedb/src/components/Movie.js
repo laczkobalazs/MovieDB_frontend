@@ -10,9 +10,7 @@ function Movie({ movie }) {
   const [shortenedOverview, setShortenedOverview] = useState("");
   const [refresh, setRefresh] = useContext(RefreshContext);
   const [watchWatched, setWatchWatched] = useContext(WatchWatchedContext);
-  const cookieValue = document.cookie
-    .split("=")
-    .find((row) => row.startsWith("Bearer "));
+  const cookieValue = document.cookie.split("=")[1];
 
   useEffect(() => {
     if (movie.overview) {
