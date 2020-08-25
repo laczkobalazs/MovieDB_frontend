@@ -12,6 +12,7 @@ import SuggestedMovies from "./components/SuggestedMovies";
 import Navbar from "./components/Navbar";
 import GenreSearchResult from "./components/GenreSearchResult";
 import LoginOrRegister from "./components/LoginOrRegister";
+import Chat from "./components/Chat";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route exact path="/experiences" component={Experiences} />
           <Route exact path="/suggested" component={SuggestedMovies} />
           <Route exact path="/login-register" component={LoginOrRegister} />
+          <Route exact path="/chat" component={Chat} />
         </Router>
       </header>
     </div>
