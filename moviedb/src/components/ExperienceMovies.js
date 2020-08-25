@@ -10,12 +10,18 @@ export default function Experiences(props) {
   const [movieList, setMovieList] = useState([]);
   const [movieType, setMovieType] = useState("liked");
   const [refresh, setRefresh] = useContext(RefreshContext);
+  const cookieValue = document.cookie
+    .split("=")
+    .find((row) => row.startsWith("Bearer "));
 
   useEffect(() => {
     if (movieType === "liked") {
       const likedURL = `http://localhost:8080/all-liked-movies/${language}`;
       axios
-        .get(likedURL)
+        .get(likedURL, {
+          withCredentials: true,
+          headers: { Authorization: cookieValue },
+        })
         .then((res) => {
           setMovieList(res.data);
         })
@@ -23,13 +29,16 @@ export default function Experiences(props) {
     } else {
       const dislikedURL = `http://localhost:8080/all-disliked-movies/${language}`;
       axios
-        .get(dislikedURL)
+        .get(dislikedURL, {
+          withCredentials: true,
+          headers: { Authorization: cookieValue },
+        })
         .then((res) => {
           setMovieList(res.data);
         })
         .catch((err) => console.log(err));
     }
-  }, [language, movieType, refresh]);
+  }, [cookieValue, language, movieType, refresh]);
 
   return (
     <div>

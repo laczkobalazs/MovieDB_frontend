@@ -10,6 +10,9 @@ function Movie({ movie }) {
   const [shortenedOverview, setShortenedOverview] = useState("");
   const [refresh, setRefresh] = useContext(RefreshContext);
   const [watchWatched, setWatchWatched] = useContext(WatchWatchedContext);
+  const cookieValue = document.cookie
+    .split("=")
+    .find((row) => row.startsWith("Bearer "));
 
   useEffect(() => {
     if (movie.overview) {
@@ -21,13 +24,19 @@ function Movie({ movie }) {
 
   const addToLikedMovieList = (e) => {
     axios
-      .get(`http://localhost:8080/add/liked-movie/${movie.id}`)
+      .get(`http://localhost:8080/add/liked-movie/${movie.id}`, {
+        withCredentials: true,
+        headers: { Authorization: cookieValue },
+      })
       .then((res) => setRefresh(refresh + 1));
   };
 
   const addToDislikedMovieList = (e) => {
     axios
-      .get(`http://localhost:8080/add/disliked-movie/${movie.id}`)
+      .get(`http://localhost:8080/add/disliked-movie/${movie.id}`, {
+        withCredentials: true,
+        headers: { Authorization: cookieValue },
+      })
       .then((res) => setRefresh(refresh + 1));
   };
 

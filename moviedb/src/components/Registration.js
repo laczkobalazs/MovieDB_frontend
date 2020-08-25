@@ -16,7 +16,7 @@ function Registration() {
         email: email,
         password: firstPassword,
       }).then((data) => {
-        console.log(data.data);
+        document.cookie = `Authorization=Bearer ${data.data.token}`;
       });
     }
   };
