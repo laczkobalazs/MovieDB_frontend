@@ -11,6 +11,7 @@ function Login() {
       password: password,
     }).then((data) => {
       document.cookie = `Authorization=Bearer ${data.data.token}`;
+      document.cookie = `Username=${username}`;
     });
   };
 

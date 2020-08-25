@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import SockJsClient from "react-stomp";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import NameComponent from "./NameComponent";
 
 class Chat extends Component {
   constructor(props) {
@@ -58,7 +57,6 @@ class Chat extends Component {
   render() {
     return (
       <div>
-        <NameComponent setName={this.setName} />
         <div className="align-center">
           <h1>Welcome to Web Sockets</h1>
           <br />
