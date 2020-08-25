@@ -8,18 +8,25 @@ export default function SuggestedMovies() {
   const [suggestedMovies, setSuggestedMovies] = useState([]);
   const [language, setLanguage] = useContext(LanguageContext);
   const [movieType, setMovieType] = useState("suggested");
+  const cookieValue = document.cookie.split("=")[1];
 
   useEffect(() => {
     if (movieType === "suggested") {
       axios
-        .get(`http://localhost:8080/recommendation/suggested/${language}`)
+        .get(`http://localhost:8080/recommendation/suggested/${language}`, {
+          withCredentials: true,
+          headers: { Authorization: cookieValue },
+        })
         .then((res) => setSuggestedMovies(res.data.results));
     } else {
       axios
-        .get(`http://localhost:8080/recommendation/not-suggested/${language}`)
+        .get(`http://localhost:8080/recommendation/not-suggested/${language}`, {
+          withCredentials: true,
+          headers: { Authorization: cookieValue },
+        })
         .then((res) => setSuggestedMovies(res.data.results));
     }
-  }, [language, movieType]);
+  }, [cookieValue, language, movieType]);
 
   return (
     <div>

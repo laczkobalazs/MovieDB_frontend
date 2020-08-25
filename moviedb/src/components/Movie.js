@@ -44,13 +44,19 @@ function Movie({ movie }) {
 
   const addToWatchList = (e) => {
     axios
-      .post(`http://localhost:8080/watchlist/add/${movie.id}`)
+      .get(`http://localhost:8080/watchlist/add/${movie.id}`, {
+        withCredentials: true,
+        headers: { Authorization: cookieValue },
+      })
       .then((res) => setRefresh(refresh + 1));
   };
 
   const removeFromWatchList = (e) => {
     axios
-      .post(`http://localhost:8080/watchlist/delete/${movie.id}`)
+      .get(`http://localhost:8080/watchlist/delete/${movie.id}`, {
+        withCredentials: true,
+        headers: { Authorization: cookieValue },
+      })
       .then((res) => setRefresh(refresh + 1));
   };
 
@@ -73,13 +79,21 @@ function Movie({ movie }) {
 
   const removeFromWatched = (e) => {
     axios
-      .get(`http://localhost:8080/delete/watched-movie/${movie.id}`)
+      .get(`http://localhost:8080/delete/watched-movie/${movie.id}`, {
+        withCredentials: true,
+        headers: { Authorization: cookieValue },
+      })
       .then((res) => setRefresh(refresh + 1));
   };
 
   const addToWatchedMovies = () => {
     const url = `http://localhost:8080/add/watched-movie/${movie.id}`;
-    axios.get(url).then((res) => setRefresh(refresh + 1));
+    axios
+      .get(url, {
+        withCredentials: true,
+        headers: { Authorization: cookieValue },
+      })
+      .then((res) => setRefresh(refresh + 1));
   };
 
   const decideEventWatched = () => {
@@ -112,7 +126,10 @@ function Movie({ movie }) {
   };
 
   const removeFromWatchedAddToWatch = (e) => {
-    axios.get(`http://localhost:8080/delete-watched/add-watch/${movie.id}`);
+    axios.get(`http://localhost:8080/delete-watched/add-watch/${movie.id}`, {
+      withCredentials: true,
+      headers: { Authorization: cookieValue },
+    });
   };
 
   const [deleteUndoButton4, setDeleteUndoButton4] = useState("Want to see it!");

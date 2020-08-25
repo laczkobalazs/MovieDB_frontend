@@ -12,23 +12,32 @@ export default function WatchList() {
   const [refresh, setRefresh] = useContext(RefreshContext);
   const [watchWatched, setWatchWatched] = useContext(WatchWatchedContext);
   const [movieType, setMovieType] = useState(watchWatched);
+  const cookieValue = document.cookie.split("=")[1];
 
   useEffect(() => {
     if (movieType === "watch") {
       const url = `http://localhost:8080/watchlist/${language}`;
-      axios.get(url).then((res) => {
-        setWatchListMovies(res.data.results);
-      });
+      axios
+        .get(url, {
+          withCredentials: true,
+          headers: { Authorization: cookieValue },
+        })
+        .then((res) => {
+          setWatchListMovies(res.data.results);
+        });
     } else {
       const watchedMoviesURL = `http://localhost:8080/all-watched-movies/${language}`;
       axios
-        .get(watchedMoviesURL)
+        .get(watchedMoviesURL, {
+          withCredentials: true,
+          headers: { Authorization: cookieValue },
+        })
         .then((res) => {
           setWatchListMovies(res.data);
         })
         .catch((err) => console.log(err));
     }
-  }, [language, refresh, movieType]);
+  }, [language, refresh, movieType, cookieValue]);
 
   return (
     <div>
