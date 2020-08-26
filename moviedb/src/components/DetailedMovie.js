@@ -43,6 +43,7 @@ function DetailedMovie() {
   }, [movieId]);
 
   useEffect(() => {
+    console.log(cookieValue);
     Axios.get("http://localhost:8080/auth-checker", {
       withCredentials: true,
       headers: { Authorization: cookieValue },
