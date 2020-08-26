@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Axios from "axios";
+import { LoggedInContext } from "../context/LoggedInContext";
+import { Link } from "react-router-dom";
 
 function Registration() {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [firstPassword, setFirstPassword] = useState("");
   const [secondPassword, setSecondPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
 
   const sendNewUserData = () => {
     if (firstPassword !== secondPassword) {
@@ -16,12 +19,23 @@ function Registration() {
         email: email,
         password: firstPassword,
       }).then((data) => {
+        removeCookies();
         document.cookie = `Authorization=${data.data.token}`;
         localStorage.clear();
         window.localStorage.setItem("username", userName);
+        setIsLoggedIn(true);
       });
     }
   };
+
+  function removeCookies() {
+    var res = document.cookie;
+    var multiple = res.split(";");
+    for (var i = 0; i < multiple.length; i++) {
+      var key = multiple[i].split("=");
+      document.cookie = key[0] + " =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
+    }
+  }
   return (
     <div>
       <input
@@ -50,7 +64,9 @@ function Registration() {
         placeholder="Once again"
         onChange={(e) => setSecondPassword(e.target.value)}
       />
-      <button onClick={sendNewUserData}>Submit</button>
+      <Link to={"/"}>
+        <button onClick={sendNewUserData}>Submit</button>
+      </Link>
     </div>
   );
 }
