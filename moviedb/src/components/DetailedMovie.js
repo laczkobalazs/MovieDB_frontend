@@ -180,15 +180,17 @@ function DetailedMovie() {
                   <div className="posters">
                     {/* <span>{star.name}</span> */}
                     {movie.credits.cast.slice(0, 5).map((star) => (
-                      <abbr title={star.name}>
-                        <img
-                          src={`https://image.tmdb.org/t/p/original${star.profile_path}`}
-                          alt=""
-                          height="60rem"
-                          width="auto"
-                          border="2rem solid"
-                        />
-                      </abbr>
+                      <Link to={`/actor/${star.id}`}>
+                        <abbr title={star.name}>
+                          <img
+                            src={`https://image.tmdb.org/t/p/original${star.profile_path}`}
+                            alt=""
+                            height="60rem"
+                            width="auto"
+                            border="2rem solid"
+                          />
+                        </abbr>
+                      </Link>
                     ))}
                   </div>
                 </div>

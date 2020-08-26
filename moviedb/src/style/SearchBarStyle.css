@@ -68,3 +68,8 @@ input::-webkit-input-placeholder {
   color: #002e5b;
   text-decoration: underline;
 }
+
+label {
+  font: 1rem "Fira Sans", sans-serif;
+  color: #fe4141;
+}

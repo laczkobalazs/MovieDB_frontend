@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import MovieList from "./MovieList";
 import { LanguageContext } from "../context/LanguageContext";
 import "../style/SearchResult.css";
+import ActorList from "./ActorList";
 
 function SearchResult(props) {
   const [results, setResults] = useState([]);
@@ -11,18 +12,20 @@ function SearchResult(props) {
   const [pageNumber, setPageNumber] = useState(1);
   const [maxPageNumber, setMaxPageNumber] = useState(0);
   const [language, setLanguage] = useContext(LanguageContext);
+  const { searchType } = useParams();
 
   useEffect(() => {
     setPageNumber(1);
   }, [searchString]);
 
   useEffect(() => {
-    const url = `http://localhost:8080/search-result/${searchString}&page=${pageNumber}/${language}`;
+    console.log(searchType);
+    const url = `http://localhost:8080/search-result/${searchString}&page=${pageNumber}/${language}/${searchType}`;
     axios.get(url).then((res) => {
       setResults(res.data.results);
       setMaxPageNumber(res.data.total_pages);
     });
-  }, [pageNumber, searchString, language]);
+  }, [pageNumber, searchString, language, searchType]);
 
   const increasePageNumber = () => {
     let newPageNumber = pageNumber + 1;
@@ -56,7 +59,11 @@ function SearchResult(props) {
         </button>
       </div>
 
-      <MovieList movies={results} />
+      {searchType === "movie" ? (
+        <MovieList movies={results} />
+      ) : (
+        <ActorList actors={results} />
+      )}
     </div>
   );
 }
