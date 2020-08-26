@@ -43,13 +43,11 @@ function DetailedMovie() {
   }, [movieId]);
 
   useEffect(() => {
-    console.log(cookieValue);
     Axios.get("http://localhost:8080/auth-checker", {
       withCredentials: true,
       headers: { Authorization: cookieValue },
     }).then((res) => {
       if (res.data) {
-        console.log("visszajött");
         setUserSignedIn(true);
       }
     });
@@ -197,7 +195,7 @@ function DetailedMovie() {
           </div>
         </div>
       ))}
-      {userSignedIn ? <Chat /> : <div></div>}
+      {userSignedIn ? <Chat movieId={movieId} /> : <div></div>}
     </div>
   );
 }
