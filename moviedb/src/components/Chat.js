@@ -123,10 +123,12 @@ class Chat extends Component {
             console.log("Disconnected");
           }}
           onMessage={(msg) => {
-            var jobs = this.state.messages;
-            jobs.push(msg);
-            this.setState({ messages: jobs });
-            console.log(this.state);
+            if (String(msg.movieId) === String(this.props.movieId)) {
+              var jobs = this.state.messages;
+              jobs.push(msg);
+              this.setState({ messages: jobs });
+              console.log(this.state);
+            }
           }}
           ref={(client) => {
             this.clientRef = client;
