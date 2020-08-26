@@ -14,6 +14,7 @@ import GenreSearchResult from "./components/GenreSearchResult";
 import LoginOrRegister from "./components/LoginOrRegister";
 import Chat from "./components/Chat";
 import DetailedActor from "./components/DetailedActor";
+import Users from "./components/Users";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route exact path="/experiences" component={Experiences} />
           <Route exact path="/suggested" component={SuggestedMovies} />
           <Route exact path="/login-register" component={LoginOrRegister} />
+          <Route exact path="/users" component={Users} />
         </Router>
       </header>
     </div>

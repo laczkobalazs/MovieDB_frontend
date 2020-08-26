@@ -19,7 +19,6 @@ function SearchResult(props) {
   }, [searchString]);
 
   useEffect(() => {
-    console.log(searchType);
     const url = `http://localhost:8080/search-result/${searchString}&page=${pageNumber}/${language}/${searchType}`;
     axios.get(url).then((res) => {
       setResults(res.data.results);
@@ -39,6 +38,11 @@ function SearchResult(props) {
 
   return (
     <div>
+      {searchType === "movie" ? (
+        <h1 style={{ color: "white" }}>Movies</h1>
+      ) : (
+        <h1 style={{ color: "white" }}>Actors</h1>
+      )}
       <p>
         Pages: {pageNumber}/{maxPageNumber}
       </p>

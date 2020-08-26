@@ -9,7 +9,6 @@ function SearchBar() {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && searchString) {
-      alert(searchType);
       redirectToResult();
     }
   };
@@ -17,15 +16,6 @@ function SearchBar() {
   const redirectToResult = () => {
     window.location.replace(`/search-result/${searchString}/${searchType}`);
   };
-
-  // const handleChecked = (e) => {
-  //   console.log(e.target.value);
-  //   if (e.target.value === searchType) {
-  //     console.log(e.target.value);
-  //     return true;
-  //   }
-  //   return false;
-  // };
 
   return (
     <div style={{ margin: "0.5rem" }}>
@@ -35,7 +25,7 @@ function SearchBar() {
           type="radio"
           name="search-type"
           value="movie"
-          checked={true}
+          checked={searchType === "movie"}
           onChange={() => setSearchType("movie")}
         />
         <spam> Movie</spam>
@@ -44,6 +34,7 @@ function SearchBar() {
           type="radio"
           name="search-type"
           value="person"
+          checked={searchType === "person"}
           onChange={() => setSearchType("person")}
         />
         <spam> Stars</spam>
