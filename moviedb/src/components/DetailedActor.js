@@ -14,7 +14,7 @@ function DetailedActor() {
       console.log(res.data);
       setActor(res.data);
     });
-  }, []);
+  }, [actorId, language]);
 
   return (
     <div class="movie-card">
