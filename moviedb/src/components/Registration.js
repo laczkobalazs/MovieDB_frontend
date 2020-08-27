@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Axios from "axios";
+import { LoggedInContext } from "../context/LoggedInContext";
 
 function Registration() {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [firstPassword, setFirstPassword] = useState("");
   const [secondPassword, setSecondPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
+  const [cookieValue, setCookieValue] = useState(document.cookie.split("=")[1]);
 
   const sendNewUserData = () => {
     if (firstPassword !== secondPassword) {
@@ -15,11 +18,23 @@ function Registration() {
         username: userName,
         email: email,
         password: firstPassword,
-      }).then((data) => {
-        document.cookie = `Authorization=${data.data.token}`;
-        localStorage.clear();
-        window.localStorage.setItem("username", userName);
-      });
+      })
+        .then((data) => {
+          document.cookie =
+            "Authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          setCookieValue(document.cookie);
+          document.cookie = `Authorization=${data.data.token}`;
+          setCookieValue(`Authorization=${data.data.token}`);
+          localStorage.removeItem("username");
+          localStorage.removeItem("roles");
+          window.localStorage.setItem("username", userName);
+          window.localStorage.setItem("roles", data.data.roles);
+          setIsLoggedIn(true);
+          window.location.replace("/");
+        })
+        .catch((e) => {
+          alert("Incorrect username or password");
+        });
     }
   };
   return (

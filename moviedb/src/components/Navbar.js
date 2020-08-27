@@ -5,21 +5,12 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import FlagIcon from "./FlagIcon.js";
 import Axios from "axios";
+import { LoggedInContext } from "../context/LoggedInContext";
 
 export default function Navbar() {
   const [language, setLanguage] = useContext(LanguageContext);
-  const cookieValue = document.cookie.split("=")[1];
-  const [actualUser, setActualUser] = useState({});
-
-  useEffect(() => {
-    const url = "http://localhost:8080/me";
-    Axios.get(url, {
-      withCredentials: true,
-      headers: { Authorization: cookieValue },
-    }).then((data) => {
-      console.log(data.data);
-    });
-  }, [cookieValue]);
+  const [cookieValue, setCookieValue] = useState(document.cookie.split("=")[1]);
+  const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
 
   function isDisabled(buttonLanguage) {
     if (buttonLanguage === language) {
@@ -27,6 +18,34 @@ export default function Navbar() {
     }
     return false;
   }
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      setCookieValue(document.cookie.split("=")[1]);
+    }
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:8080/auth-checker", {
+      withCredentials: true,
+      headers: { Authorization: cookieValue },
+    }).then((data) => {
+      if (data.data) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+  }, [cookieValue, setIsLoggedIn]);
+
+  const logOut = () => {
+    document.cookie =
+      "Authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    setCookieValue(document.cookie);
+    setIsLoggedIn(false);
+    window.localStorage.removeItem("username");
+    window.localStorage.removeItem("roles");
+  };
 
   return (
     <div className="header">
@@ -67,36 +86,54 @@ export default function Navbar() {
               <i class="icon-home"></i>Home
             </Link>
           </li>
-          <li>
-            <Link to={"/experiences"}>
-              <i class="icon-heart"></i>Experiences
-            </Link>
-          </li>
-          <li>
-            <Link to={"/watchlist"}>
-              <i class="icon-list"></i>Watch List
-            </Link>
-          </li>
-          <li>
-            <Link to={"/suggested"}>
-              <i class="icon-plus"></i>Suggestions
-            </Link>
-          </li>
+          {isLoggedIn ? (
+            <li>
+              <Link to={"/experiences"}>
+                <i class="icon-heart"></i>Experiences
+              </Link>
+            </li>
+          ) : null}
+          {isLoggedIn ? (
+            <li>
+              <Link to={"/watchlist"}>
+                <i class="icon-list"></i>Watch List
+              </Link>
+            </li>
+          ) : null}
+          {isLoggedIn ? (
+            <li>
+              <Link to={"/suggested"}>
+                <i class="icon-plus"></i>Suggestions
+              </Link>
+            </li>
+          ) : null}
           <li>
             <Link to={"/random-movie"}>
               <i class="icon-question"></i>Random
             </Link>
           </li>
-          <li>
-            <Link to={"/users"}>
-              <i class="icon-bookmark"></i>Users
-            </Link>
-          </li>
-          <li>
-            <Link to={"/login-register"}>
-              <i class="icon-lock"></i>Login|Register
-            </Link>
-          </li>
+          {isLoggedIn &&
+          localStorage.getItem("roles") &&
+          localStorage.getItem("roles").includes("ROLE_ADMIN") ? (
+            <li>
+              <Link to={"/users"}>
+                <i class="icon-bookmark"></i>Users
+              </Link>
+            </li>
+          ) : null}
+          {isLoggedIn ? (
+            <li>
+              <Link onClick={() => logOut()} to={"/"}>
+                Logout
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link to={"/login-register"}>
+                <i class="icon-lock"></i>Login|Register
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </div>
