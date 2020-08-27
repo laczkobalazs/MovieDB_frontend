@@ -26,16 +26,54 @@ function DetailedActor() {
           <div class="person-card-photo">
             <img
               src={`https://image.tmdb.org/t/p/original${actor.profile_path}`}
+              alt="a really big star"
             />
           </div>
           <div class="person-card-info">
-            <h2>{actor.name}</h2>
+            <h2>
+              {actor.name} ({actor.known_for_department})
+            </h2>
             <br />
             {actor.biography !== "" ? (
               <p>{actor.biography}</p>
             ) : (
               <p>Nincs leírás / No Biography</p>
             )}
+            <div
+              style={{
+                position: "absolute",
+                top: "18rem",
+                left: "6rem",
+                width: "15rem",
+              }}
+            >
+              <h4 style={{ fontSize: "1rem" }}>
+                {language === "hu" ? "Születésnap: " : "Birthday: "}{" "}
+                {actor.birthday}
+              </h4>
+              <h4 style={{ fontSize: "1rem" }}>
+                {language === "hu" ? "Nem: " : "Gender: "}
+                {actor.gender === 1
+                  ? language === "hu"
+                    ? "Nő"
+                    : "Woman"
+                  : language === "hu"
+                  ? "Férfi"
+                  : "Man"}
+              </h4>
+              <h4 style={{ fontSize: "1rem" }}>
+                {language === "hu" ? "Születési hely: " : "Place of birth: "}
+                {actor.place_of_birth}
+              </h4>
+              {actor.deathday ? (
+                <h4 style={{ fontSize: "1rem" }}>
+                  {language === "hu" ? "Halála napja: " : "Date of death: "}
+                  {actor.deathday}
+                </h4>
+              ) : (
+                <div></div>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -44,41 +82,3 @@ function DetailedActor() {
 }
 
 export default DetailedActor;
-
-{
-  /*<div class="container">
-        <div class="hero">
-          <div class="details">
-            <img
-              src={`https://i.pinimg.com/736x/56/96/ac/5696ac07679652e64cd7273266b22daa.jpg`}
-              alt=""
-              width="100%"
-              height="100%"
-            />
-          </div>
-        </div>
-        <div class="description">
-          <div class="column1">
-            <img
-              src={`https://image.tmdb.org/t/p/original${actor.profile_path}`}
-              alt="cover"
-              class="cover"
-              width="auto"
-              height="55%"
-            />
-          </div>
-          <div class="column2">
-            <div className="rightSideOfColumn">
-              <h1 style={{ color: "darkgray" }}>{actor.name}</h1>
-
-              <h2 style={{ color: "black", padding: "1rem" }}>Biography:</h2>
-              {actor.biography !== "" ? (
-                <p>{actor.biography}</p>
-              ) : (
-                <p>Nincs leírás / No Biography</p>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>*/
-}
