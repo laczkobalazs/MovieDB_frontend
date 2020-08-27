@@ -39,24 +39,22 @@ export default function Navbar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cookieValue]);
 
-  function emptyLocalStorage() {
-    localStorage.removeItem("roles");
-    localStorage.removeItem("username");
-  }
-
   function logout() {
-    emptyLocalStorage();
     removeCookies();
     setIsLoggedIn(false);
+    localStorage.removeItem("username");
+    localStorage.removeItem("roles");
   }
 
   function removeCookies() {
-    var res = document.cookie;
-    var multiple = res.split(";");
-    for (var i = 0; i < multiple.length; i++) {
-      var key = multiple[i].split("=");
-      document.cookie = key[0] + " =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
-    }
+    document.cookie =
+      "Authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    // var res = document.cookie;
+    // var multiple = res.split(";");
+    // for (var i = 0; i < multiple.length; i++) {
+    //   var key = multiple[i].split("=");
+    //   document.cookie = key[0] + " =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
+    // }
   }
 
   return (
@@ -124,7 +122,8 @@ export default function Navbar() {
               <i class="icon-question"></i>Random
             </Link>
           </li>
-          {localStorage.getItem("roles") &&
+          {isLoggedIn &&
+          localStorage.getItem("roles") &&
           localStorage.getItem("roles").includes("ROLE_ADMIN") ? (
             <li>
               <Link to={"/users"}>
