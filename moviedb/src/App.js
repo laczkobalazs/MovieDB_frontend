@@ -1,7 +1,6 @@
 import React from "react";
 import "./style/App.css";
 import HomePage from "./components/HomePage";
-import SearchBar from "./components/SearchBar";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import SearchResult from "./components/SearchResult";
 import RandomMovie from "./components/RandomMovie";
@@ -14,6 +13,7 @@ import GenreSearchResult from "./components/GenreSearchResult";
 import LoginOrRegister from "./components/LoginOrRegister";
 import Chat from "./components/Chat";
 import DetailedActor from "./components/DetailedActor";
+import Users from "./components/Users";
 
 function App() {
   return (
@@ -21,7 +21,6 @@ function App() {
       <header className="App-header">
         <Router>
           <Navbar />
-          <SearchBar />
           <Route
             exact
             path="/search-result/:searchString/:searchType"
@@ -41,6 +40,7 @@ function App() {
           <Route exact path="/experiences" component={Experiences} />
           <Route exact path="/suggested" component={SuggestedMovies} />
           <Route exact path="/login-register" component={LoginOrRegister} />
+          <Route exact path="/users" component={Users} />
         </Router>
       </header>
     </div>
