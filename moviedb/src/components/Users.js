@@ -38,7 +38,9 @@ function Users() {
     Axios.delete(url, {
       withCredentials: true,
       headers: { Authorization: cookieValue },
-    }).then(receiveUsers("http://localhost:8080/users"));
+    }).then((data) => {
+      receiveUsers("http://localhost:8080/users");
+    });
   };
 
   return (
