@@ -87,7 +87,7 @@ $grey-lighter: hsl(0, 0%, 86%);
     }
 
     a {
-      font-size: 0.8rem;
+      font-size: 0.2rem;
     }
 
     .options {
@@ -156,4 +156,14 @@ select:focus,
 textarea:focus,
 button:focus {
   outline: none;
+}
+
+.register-login {
+  color: hsl(0, 0%, 48%);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    color: #fe4141;
+  }
 }

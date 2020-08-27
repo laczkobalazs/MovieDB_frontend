@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Login from "./Login.js";
 import Registration from "./Registration.js";
 import Axios from "axios";
+import "../style/Login.scss";
 
 function LoginOrRegister(props) {
   const [loginOrReg, setLoginOrReg] = useState("login");
@@ -10,25 +11,25 @@ function LoginOrRegister(props) {
     <div>
       <div className="buttonsArea">
         {loginOrReg === "registration" ? (
-          <button
-            className="login"
-            disabled={loginOrReg === "login"}
+          <a
+            href="#"
+            className="register-login"
             onClick={() => {
               setLoginOrReg("login");
             }}
           >
-            Sign in
-          </button>
+            Have an account? Sign in!
+          </a>
         ) : (
-          <button
-            className="registration"
-            disabled={loginOrReg === "registration"}
+          <a
+            href="#"
+            className="register-login"
             onClick={() => {
               setLoginOrReg("registration");
             }}
           >
-            Register
-          </button>
+            Not signed up? Register!
+          </a>
         )}
       </div>
       {loginOrReg === "login" ? (

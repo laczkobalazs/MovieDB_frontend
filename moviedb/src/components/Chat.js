@@ -3,6 +3,7 @@ import SockJsClient from "react-stomp";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Axios from "axios";
+import "../style/Chat.css";
 
 class Chat extends Component {
   constructor(props) {
@@ -29,6 +30,8 @@ class Chat extends Component {
   };
 
   sendMessage = () => {
+    //let input = document.querySelector("#outlined-basic");
+    //input.value = "";
     this.clientRef.sendMessage(
       "/app/user-all",
       JSON.stringify({
@@ -40,39 +43,31 @@ class Chat extends Component {
     );
   };
 
-  displayMessages = () => {
-    return (
-      <div>
-        {this.state.messages.map((msg) => {
-          return (
-            <div>
-              <div>
-                <p>{msg.name} : </p>
-                <br />
-                <p>{msg.message}</p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    );
-  };
-
   render() {
     return (
       <div>
-        <div className="align-center">
-          <h1>Welcome to Web Sockets</h1>
-          <br />
-          <br />
+        <div className="align-center clearfix">
+          <h1 className="chat-title">Chat about this movie!</h1>
+        </div>
+
+        <div className="align-center"></div>
+
+        <div class="chat">
+          <div class="chat-history">
+            {this.state.messages.map((msg) => {
+              return (
+                <div className="chat-message-content clearfix">
+                  <span className="chat-time">{msg.date}</span>
+                  <h5 className="message-name">{msg.name}</h5>
+                  <p className="message-message">{msg.message}</p>
+                  <hr />
+                </div>
+              );
+            })}
+          </div>
         </div>
         <div className="align-center">
-          User : <p className="title1"> {this.state.name}</p>
-        </div>
-        <div className="align-center">
-          <br />
-          <br />
-          <table>
+          <table className="send-message">
             <tr>
               <td>
                 <TextField
@@ -95,23 +90,6 @@ class Chat extends Component {
               </td>
             </tr>
           </table>
-        </div>
-        <br />
-        <br />
-        <div className="align-center">
-          <div>
-            {this.state.messages.map((msg) => {
-              return (
-                <div>
-                  <div>
-                    <p>{msg.name} : </p>
-                    <br />
-                    <p>{msg.message}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
         </div>
         <SockJsClient
           url="http://localhost:8080/websocket-chat/"
@@ -140,3 +118,60 @@ class Chat extends Component {
 }
 
 export default Chat;
+
+{
+  /*
+
+	<div id="live-chat">
+		
+		<header class="clearfix">
+			
+
+			<h4>Chat about this movie!</h4>
+
+		
+
+		</header>
+
+		<div class="chat">
+			
+			<div class="chat-history">
+				
+				<div class="chat-message clearfix">
+					
+
+					<div class="chat-message-content clearfix"></div>
+						
+						<span class="chat-time">13:37</span>
+
+						<h5>Marco Biedermann</h5>
+
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, nulla accusamus magni vel debitis numquam qui tempora rem voluptatem delectus!</p>
+
+					</div> <!-- end chat-message-content -->
+
+				</div> <!-- end chat-message -->
+
+				<hr>
+
+
+
+			</div> <!-- end chat-history -->
+
+
+			<form action="#" method="post">
+
+				<fieldset>
+					
+					<input type="text" placeholder="Type your message…" autofocus>
+					<input type="hidden">
+
+				</fieldset>
+
+			</form>
+
+		</div> <!-- end chat -->
+
+	</div> <!-- end live-chat -->
+*/
+}
