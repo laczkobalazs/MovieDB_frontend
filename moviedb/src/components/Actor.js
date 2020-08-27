@@ -28,28 +28,47 @@ function Actor({ actor }) {
           </Link>
           <div className="text-movie-cont">
             <div className="mr-grid">
-              <Link to={`/actor/${actor.id}`}>
-                <p>{actor.name}</p>
-              </Link>
+              <div className="col1">
+                <Link to={`/actor/${actor.id}`}>
+                  <h2 style={{ fontSize: "1.5rem" }}>{actor.name}</h2>
+                </Link>
+              </div>
             </div>
-            <div className="mr-grid">
-              <p>Department: {actor.known_for_department}</p>
+            <div className="col1">
+              <ul className="movie-gen">
+                <li style={{ fontSize: "1rem" }}>
+                  {actor.known_for_department}
+                </li>
+              </ul>
             </div>
+            <br />
             <div className="mr-grid">
+              <div className="col1">
+                <h3 style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+                  Known for:
+                </h3>
+                <br />
+              </div>
+
               <ol>
                 {actor.known_for.map((movie) => (
-                  <Link to={`/movie/${movie.id}`}>
-                    <li>{movie.title}</li>
-                  </Link>
+                  <div className="mr-grid">
+                    <div className="col1">
+                      <Link to={`/movie/${movie.id}`}>
+                        <li style={{ fontSize: "1.5rem", color: "#e7e7e7" }}>
+                          {movie.title}
+                        </li>
+                      </Link>
+                    </div>
+                  </div>
                 ))}
               </ol>
             </div>
-
-            <div className="mr-grid action-row">
-              <div className="col6 action-btn"></div>
-              <div className="col6 action-btn"></div>
-              <div className="col6 action-btn"></div>
-            </div>
+          </div>
+          <div className="mr-grid action-row">
+            <div className="col6 action-btn"></div>
+            <div className="col6 action-btn"></div>
+            <div className="col6 action-btn"></div>
           </div>
         </div>
       </div>

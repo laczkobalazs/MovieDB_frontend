@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import Axios from "axios";
 import { LanguageContext } from "../context/LanguageContext";
 import SearchBar from "./SearchBar";
+import "../style/DetailedActor.sass";
 
 function DetailedActor() {
   const { actorId } = useParams();
@@ -18,9 +19,34 @@ function DetailedActor() {
   }, [actorId, language]);
 
   return (
-    <div class="movie-card">
+    <div style={{ width: "100%" }}>
       <SearchBar />
-      <div class="container">
+      <div class="person-card-container">
+        <div class="person-card">
+          <div class="person-card-photo">
+            <img
+              src={`https://image.tmdb.org/t/p/original${actor.profile_path}`}
+            />
+          </div>
+          <div class="person-card-info">
+            <h2>{actor.name}</h2>
+            <br />
+            {actor.biography !== "" ? (
+              <p>{actor.biography}</p>
+            ) : (
+              <p>Nincs leírás / No Biography</p>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default DetailedActor;
+
+{
+  /*<div class="container">
         <div class="hero">
           <div class="details">
             <img
@@ -54,9 +80,5 @@ function DetailedActor() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
+      </div>*/
 }
-
-export default DetailedActor;

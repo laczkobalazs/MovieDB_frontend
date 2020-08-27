@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,800,900')
+
+
+
+.person-card-container
+  height: 100vh
+  display: block
+  color: #fff
+  font-family: 'Montserrat'
+  margin-top: 12rem
+ 
+.person-card
+  display: flex
+  position: relative
+  margin: auto
+  width: 75rem
+  border-radius: 5px
+  background-color: darken(#2C3A47, 10%)
+  .person-card-photo
+    box-sizing: border-box
+    border: 0px solid #182028
+    padding: 0
+    overflow: hidden
+    height: 25rem
+    width: 18.75rem
+    margin: -10rem 0 3rem 3rem
+    & > img
+      height: 25rem
+      position: relative
+      left: 50%
+      top: 50%
+      transform: translate(-50%, -50%)
+  .person-card-info
+    width: 60rem
+    text-align: left
+    padding: 2rem 3rem
+    & > h2
+      font-size: 2rem
+    & > p
+      opacity: 0.7
+      font-size: 1rem
