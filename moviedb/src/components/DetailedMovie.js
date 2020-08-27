@@ -8,6 +8,7 @@ import Modal from "@material-ui/core/Modal";
 import { makeStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 import Chat from "./Chat";
+import SearchBar from "./SearchBar";
 
 const Warning = styled.h1`
   position: absolute;
@@ -84,6 +85,7 @@ function DetailedMovie() {
 
   return (
     <div>
+      <SearchBar />
       <Modal open={open} onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
           <span className="close" onClick={() => setOpen(false)}>

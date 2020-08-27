@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Axios from "axios";
 import { LanguageContext } from "../context/LanguageContext";
+import SearchBar from "./SearchBar";
 
 function DetailedActor() {
   const { actorId } = useParams();
@@ -18,6 +19,7 @@ function DetailedActor() {
 
   return (
     <div class="movie-card">
+      <SearchBar />
       <div class="container">
         <div class="hero">
           <div class="details">

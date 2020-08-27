@@ -39,9 +39,9 @@ function SearchResult(props) {
   return (
     <div>
       {searchType === "movie" ? (
-        <h1 style={{ color: "white" }}>Movies</h1>
+        <MovieList movies={results} />
       ) : (
-        <h1 style={{ color: "white" }}>Actors</h1>
+        <ActorList actors={results} />
       )}
       <p>
         Pages: {pageNumber}/{maxPageNumber}
@@ -62,12 +62,6 @@ function SearchResult(props) {
           Next
         </button>
       </div>
-
-      {searchType === "movie" ? (
-        <MovieList movies={results} />
-      ) : (
-        <ActorList actors={results} />
-      )}
     </div>
   );
 }
