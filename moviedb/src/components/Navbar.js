@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../style/NavbarStyle.css";
 import { LanguageContext } from "../context/LanguageContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import FlagIcon from "./FlagIcon.js";
+import Axios from "axios";
 
 export default function Navbar() {
   const [language, setLanguage] = useContext(LanguageContext);
+  const cookieValue = document.cookie.split("=")[1];
+  const [actualUser, setActualUser] = useState({});
+
+  useEffect(() => {
+    const url = "http://localhost:8080/me";
+    Axios.get(url, {
+      withCredentials: true,
+      headers: { Authorization: cookieValue },
+    }).then((data) => {
+      console.log(data.data);
+    });
+  }, [cookieValue]);
 
   function isDisabled(buttonLanguage) {
     if (buttonLanguage === language) {
@@ -75,7 +88,14 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to={"/login-register"}>Login|Register</Link>
+            <Link to={"/users"}>
+              <i class="icon-bookmark"></i>Users
+            </Link>
+          </li>
+          <li>
+            <Link to={"/login-register"}>
+              <i class="icon-lock"></i>Login|Register
+            </Link>
           </li>
         </ul>
       </nav>
