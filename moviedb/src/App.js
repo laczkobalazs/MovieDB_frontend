@@ -23,7 +23,7 @@ function App() {
           <Navbar />
           <Route
             exact
-            path="/search-result/:searchString/:searchType"
+            path="/search-result/simple-search/:searchString/:searchType"
             component={SearchResult}
           />
           <Route

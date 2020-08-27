@@ -30,7 +30,7 @@ class Chat extends Component {
   };
 
   sendMessage = () => {
-    //let input = document.querySelector("#outlined-basic");
+    //let input = document.getElementById("#outlined-basic");
     //input.value = "";
     this.clientRef.sendMessage(
       "/app/user-all",

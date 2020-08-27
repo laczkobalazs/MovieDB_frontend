@@ -68,6 +68,8 @@ a:hover {
   top: 17rem;
   left: 1rem;
   z-index: 2;
+  width: 22rem;
+  height: 30rem;
 }
 
 .description {
@@ -204,7 +206,7 @@ body {
   cursor: pointer;
   background-color: white;
   border-radius: 0.625rem;
-  width: 5rem;
+  width: 7rem;
   margin: 0.5rem;
   padding: 0.2rem;
   text-align: center;

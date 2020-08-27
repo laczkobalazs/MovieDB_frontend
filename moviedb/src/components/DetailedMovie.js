@@ -17,7 +17,7 @@ const Warning = styled.h1`
   color: red;
 `;
 
-function DetailedMovie() {
+function DetailedMovie(props) {
   const { movieId } = useParams();
   const [movies, setMovie] = useState([]);
   const [videoURL, setVideoURL] = useState("");
@@ -80,7 +80,8 @@ function DetailedMovie() {
   }
 
   const sendGenreId = (genreId) => {
-    window.location.replace(`/search-result/genre/${genreId}`);
+    props.history.push(`/search-result/genre/${genreId}`);
+    //window.location.replace(`/search-result/genre/${genreId}`);
   };
 
   return (
@@ -136,8 +137,6 @@ function DetailedMovie() {
                   src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                   alt="cover"
                   class="cover"
-                  width="auto"
-                  height="55%"
                 />
                 <div className="genres">
                   {movie.genres.slice(0, 6).map((genre) => (

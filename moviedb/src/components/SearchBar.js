@@ -14,7 +14,9 @@ function SearchBar() {
   };
 
   const redirectToResult = () => {
-    window.location.replace(`/search-result/${searchString}/${searchType}`);
+    window.location.replace(
+      `/search-result/simple-search/${searchString}/${searchType}`
+    );
   };
 
   return (
