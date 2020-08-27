@@ -42,15 +42,19 @@ export default function Navbar() {
   function logout() {
     removeCookies();
     setIsLoggedIn(false);
+    localStorage.removeItem("username");
+    localStorage.removeItem("roles");
   }
 
   function removeCookies() {
-    var res = document.cookie;
-    var multiple = res.split(";");
-    for (var i = 0; i < multiple.length; i++) {
-      var key = multiple[i].split("=");
-      document.cookie = key[0] + " =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
-    }
+    document.cookie =
+      "Authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    // var res = document.cookie;
+    // var multiple = res.split(";");
+    // for (var i = 0; i < multiple.length; i++) {
+    //   var key = multiple[i].split("=");
+    //   document.cookie = key[0] + " =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
+    // }
   }
 
   return (
@@ -118,6 +122,15 @@ export default function Navbar() {
               <i class="icon-question"></i>Random
             </Link>
           </li>
+          {isLoggedIn &&
+          localStorage.getItem("roles") &&
+          localStorage.getItem("roles").includes("ROLE_ADMIN") ? (
+            <li>
+              <Link to={"/users"}>
+                <i class="icon-bookmark"></i>Users
+              </Link>
+            </li>
+          ) : null}
           {isLoggedIn ? (
             <li>
               <Link onClick={() => logout()} to={"/"}>
