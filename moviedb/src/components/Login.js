@@ -19,6 +19,7 @@ function Login(props) {
         document.cookie = `Authorization=${data.data.token}`;
         localStorage.clear();
         window.localStorage.setItem("username", username);
+        window.localStorage.setItem("roles", data.data.roles);
         setIsLoggedIn(true);
         props.history.push("/");
       })

@@ -39,7 +39,13 @@ export default function Navbar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cookieValue]);
 
+  function emptyLocalStorage() {
+    localStorage.removeItem("roles");
+    localStorage.removeItem("username");
+  }
+
   function logout() {
+    emptyLocalStorage();
     removeCookies();
     setIsLoggedIn(false);
   }
@@ -118,6 +124,14 @@ export default function Navbar() {
               <i class="icon-question"></i>Random
             </Link>
           </li>
+          {localStorage.getItem("roles") &&
+          localStorage.getItem("roles").includes("ROLE_ADMIN") ? (
+            <li>
+              <Link to={"/users"}>
+                <i class="icon-bookmark"></i>Users
+              </Link>
+            </li>
+          ) : null}
           {isLoggedIn ? (
             <li>
               <Link onClick={() => logout()} to={"/"}>

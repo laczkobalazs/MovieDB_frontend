@@ -25,6 +25,7 @@ function Registration(props) {
           document.cookie = `Authorization=${data.data.token}`;
           localStorage.clear();
           window.localStorage.setItem("username", userName);
+          window.localStorage.setItem("roles", data.data.roles);
           setIsLoggedIn(true);
           props.history.push("/");
         })
