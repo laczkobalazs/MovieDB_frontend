@@ -35,7 +35,10 @@ function Users() {
 
   const deleteUser = (id) => {
     const url = `http://localhost:8080/users/${id}`;
-    Axios.delete(url).then(receiveUsers("http://localhost:8080/users"));
+    Axios.delete(url, {
+      withCredentials: true,
+      headers: { Authorization: cookieValue },
+    }).then(receiveUsers("http://localhost:8080/users"));
   };
 
   return (
